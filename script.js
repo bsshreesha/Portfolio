@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Set Current Year Dynamically
     const yearSpan = document.getElementById('year');
     if(yearSpan) {
-        // This automatically fetches the current year (e.g., 2026, 2027...)
         yearSpan.textContent = new Date().getFullYear();
     }
 
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleBtn.addEventListener('click', () => {
             const current = htmlEl.getAttribute('data-theme');
             const newTheme = current === 'dark' ? 'light' : 'dark';
-            
             htmlEl.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateIcon(newTheme);
@@ -28,25 +26,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateIcon(theme) {
         if(theme === 'dark') {
-            if(icon) { 
-                icon.classList.remove('fa-moon'); 
-                icon.classList.add('fa-sun'); 
-            }
+            if(icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
         } else {
-            if(icon) { 
-                icon.classList.remove('fa-sun'); 
-                icon.classList.add('fa-moon'); 
-            }
+            if(icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
         }
     }
 
-    // 3. Highlight Active Links (Sidebar & Bottom Nav)
-    // Gets the current file name (e.g., "about.html") or defaults to "index.html"
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
-    
+    // =========================================================
+    // 3. FIXED: Active Link Highlighting (Netlify Compatible)
+    // =========================================================
+    const path = window.location.pathname;
+    // Get the last part of the URL (e.g., "about.html" or "about" or "")
+    const page = path.split("/").pop(); 
+
     document.querySelectorAll('.nav-link, .bottom-nav-link').forEach(link => {
-        // If the link href matches the current page, mark it active
-        if(link.getAttribute('href') === currentPath) {
+        const href = link.getAttribute('href'); 
+        
+        // Remove .html from both sides for comparison to handle Netlify "Clean URLs"
+        // e.g., turns "about.html" into "about"
+        const cleanHref = href.replace('.html', '');
+        const cleanPage = page.replace('.html', '');
+
+        // Case 1: Root URL ("/" or empty) maps to index.html
+        if ((path === "/" || page === "") && href === "index.html") {
+            link.classList.add('active');
+        }
+        // Case 2: Match filename (ignoring .html extension)
+        else if (cleanPage === cleanHref) {
             link.classList.add('active');
         }
     });
@@ -56,9 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value; // Included email field
+            const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
             
             // Construct Email Body
@@ -72,9 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Security (Disable Right Click / F12 / View Source)
     document.addEventListener('contextmenu', e => e.preventDefault());
-    
     document.addEventListener('keydown', e => {
-        // Disable F12, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+S
         if(
             e.key === "F12" || 
             (e.ctrlKey && e.key === 'u') || 
