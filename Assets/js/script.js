@@ -78,10 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if(contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value; // Added Mobile
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
-            window.location.href = `mailto:bsshreesha0511@gmail.com?subject=Contact from ${name}&body=${message}\n\nReply to: ${email}`;
+            
+            // Construct Email Body
+            const subject = `Portfolio Contact from ${name}`;
+            const body = `Name: ${name}\nMobile: ${mobile}\nEmail: ${email}\n\nMessage:\n${message}`;
+            
+            // Open Email Client
+            window.location.href = `mailto:bsshreesha0511@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     }
 

@@ -57,14 +57,36 @@
 
             <div class="row g-5">
                 <!-- Contact Form -->
+                <!-- Contact Form Section -->
                 <div class="col-md-7">
                     <div class="info-card border-0 p-0" style="background: transparent;">
-                        <form id="contact-form">
-                            <input type="text" id="name" class="form-control-custom" placeholder="Your Name" required>
-                            <input type="email" id="email" class="form-control-custom" placeholder="Your Email"
-                                required>
-                            <textarea id="message" class="form-control-custom" rows="5"
-                                placeholder="Let's collaborate..." required></textarea>
+                        <form id="contact-form" autocomplete="off">
+                            <!-- Name Field -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label text-secondary small fw-bold">Your Name</label>
+                                <input type="text" id="name" class="form-control-custom" placeholder="John Doe" required>
+                            </div>
+                
+                            <!-- Mobile Number Field (NEW) -->
+                            <div class="mb-3">
+                                <label for="mobile" class="form-label text-secondary small fw-bold">Mobile Number</label>
+                                <input type="tel" id="mobile" class="form-control-custom" placeholder="+91 98765 43210" required>
+                            </div>
+                
+                            <!-- Email Field -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label text-secondary small fw-bold">Email Address</label>
+                                <input type="email" id="email" class="form-control-custom" placeholder="name@example.com" required>
+                            </div>
+                
+                            <!-- Message Field -->
+                            <div class="mb-4">
+                                <label for="message" class="form-label text-secondary small fw-bold">Message</label>
+                                <textarea id="message" class="form-control-custom" rows="5" placeholder="Let's collaborate..."
+                                    required></textarea>
+                            </div>
+                
+                            <!-- Submit Button -->
                             <button type="submit" class="btn-resume border-0 w-auto px-5">Send Message</button>
                         </form>
                     </div>
