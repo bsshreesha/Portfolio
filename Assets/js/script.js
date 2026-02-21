@@ -92,4 +92,51 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         }
     });
+
+    // ... existing code ...
+
+    // =========================================================
+    // 6. CUSTOM CURSOR LOGIC
+    // =========================================================
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    // Only activate on Desktop
+    if (window.matchMedia("(min-width: 992px)").matches && cursorDot && cursorOutline) {
+        
+        // Show cursors
+        cursorDot.style.display = 'block';
+        cursorOutline.style.display = 'block';
+
+        window.addEventListener('mousemove', function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows immediately
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with slight lag (smooth animation)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Add Hover Effect for Links & Buttons
+        const interactables = document.querySelectorAll('a, button, .nav-link, .btn-resume, input, textarea');
+        
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+                // Optional: Scale up the dot slightly
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+    }
 });

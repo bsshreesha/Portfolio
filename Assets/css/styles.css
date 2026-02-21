@@ -559,3 +559,73 @@ p {
         display: none !important;
     }
 }
+
+/* --- CUSTOM CURSOR --- */
+
+/* 1. Hide the default cursor on Desktop */
+@media (min-width: 992px) {
+
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    .nav-link,
+    .btn-resume {
+        cursor: none !important;
+    }
+}
+
+/* 2. The Cursor Elements */
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    /* Critical: Allows clicking through the cursor */
+    display: none;
+    /* Hidden by default, shown via JS on desktop */
+}
+
+/* The small inner dot */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+}
+
+/* The larger trailing circle */
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--accent-color);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* 3. Hover State (Expands the circle) */
+body.hovering .cursor-outline {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(37, 99, 235, 0.1);
+    /* Slight tint matching accent */
+    border-color: transparent;
+}
+
+/* 4. Disable on Mobile/Tablet */
+@media (max-width: 991px) {
+
+    .cursor-dot,
+    .cursor-outline {
+        display: none !important;
+    }
+
+    body,
+    a,
+    button {
+        cursor: auto !important;
+    }
+}
