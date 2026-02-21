@@ -4,39 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience | B S Shreesha</title>
+    <title>Resume | B S Shreesha</title>
     <link href="./Assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./Assets/css/styles.css">
-    <script> (function () { const theme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', theme); })(); </script>
+    <script>
+        (function () { const theme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', theme); })();
+    </script>
 </head>
 
 <body>
     <div class="wrapper">
+        <!-- SIDEBAR -->
         <aside class="sidebar">
             <div>
                 <img src="./Assets/img/BSShreesha.jpg" alt="B S Shreesha" class="profile-img">
                 <h1 class="name-title">B S Shreesha</h1>
                 <div class="job-title">Data Science & AI Researcher</div>
+
                 <ul class="nav-menu mt-4">
                     <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-user"></i> About</a>
                     </li>
                     <li class="nav-item"><a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i>
-                            Experience</a></li>
+                            Exp</a></li>
                     <li class="nav-item"><a href="projects.html" class="nav-link"><i class="fas fa-code-branch"></i>
                             Projects</a></li>
-                    <li class="nav-item"><a href="teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
-                    </li>
-                    <li class="nav-item"><a href="certifications.html" class="nav-link"><i class="fas fa-certificate"></i>
-                            Certifications</a></li>
+                    <li class="nav-item"><a href="teaching.html" class="nav-link"><i
+                                class="fas fa-chalkboard-teacher"></i> Teaching</a></li>
+                    <li class="nav-item"><a href="certifications.html" class="nav-link"><i
+                                class="fas fa-certificate"></i> Certs</a></li>
                     <li class="nav-item"><a href="skills.html" class="nav-link"><i class="fas fa-layer-group"></i>
                             Skills</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i>
                             Contact</a></li>
                 </ul>
-                <a href="resume.html" class="btn-resume"><i class="fas fa-file-alt me-2"></i>
-                    View Resume</a>
+                <!-- Sidebar Button: Links to this page (Active) -->
+                <a href="resume.html" class="btn-resume"><i class="fas fa-file-alt me-2"></i> View Resume</a>
             </div>
             <div>
                 <div class="social-links mb-3">
@@ -50,61 +54,46 @@
             </div>
         </aside>
 
+        <!-- MAIN CONTENT -->
         <main class="main-content">
-            <h1 class="page-title">Professional Experience</h1>
-
-            <div class="info-card">
-                <div class="card-header">
-                    <h3 class="card-title">Researcher</h3>
-                    <span class="card-date">2024</span>
-                </div>
-                <span class="card-subtitle">CSIR – 4th Paradigm Institute</span>
-                <p>Research on AI Integrated healthcare systems, focusing on data-driven medical solutions.</p>
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                <h1 class="page-title mb-0">My Resume</h1>
+                <!-- Direct Download Button -->
+                <a href="./Assets/resume/Resume.pdf" class="btn-resume w-auto px-4 mt-0" download>
+                    <i class="fas fa-download me-2"></i> Download PDF
+                </a>
             </div>
 
-            <div class="info-card">
-                <div class="card-header">
-                    <h3 class="card-title">Research Intern</h3>
-                    <span class="card-date">2024</span>
-                </div>
-                <span class="card-subtitle">CIIRC – Centre for Incubation, Innovation, Research</span>
-                <p>Conducted research on Breast cancer detection using AI and Deep Learning, as well as Paddy Disease
-                    Classification using Mobile Vision Transformers.</p>
-            </div>
-
-            <div class="info-card">
-                <div class="card-header">
-                    <h3 class="card-title">Project Intern</h3>
-                    <span class="card-date">2022 - 2023</span>
-                </div>
-                <span class="card-subtitle">Kalpin Tech Pvt. Ltd</span>
-                <p>Complete integration and testing of drone hardware and software ecosystems.</p>
+            <!-- PDF Viewer -->
+            <div class="pdf-container"
+                style="height: 80vh; width: 100%; border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; background: var(--bg-sidebar);">
+                <iframe src="./Assets/resume/Resume.pdf#toolbar=0" width="100%" height="100%" style="border: none;">
+                    <div class="text-center p-5">
+                        <p>Your browser does not support inline PDF viewing.</p>
+                        <a href="./Assets/resume/Resume.pdf" class="btn btn-primary">Download PDF instead</a>
+                    </div>
+                </iframe>
             </div>
         </main>
+
+        <!-- MOBILE MENU OVERLAY -->
         <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-            <a href="projects.html" class="menu-item"><i class="fas fa-code-branch"></i> Projects</a>
+            <a href="about.html" class="menu-item"><i class="fas fa-user"></i> About</a>
             <a href="experience.html" class="menu-item"><i class="fas fa-briefcase"></i> Experience</a>
             <a href="teaching.html" class="menu-item"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
             <a href="certifications.html" class="menu-item"><i class="fas fa-certificate"></i> Certifications</a>
             <a href="skills.html" class="menu-item"><i class="fas fa-layer-group"></i> Skills</a>
         </div>
-        
-        <!-- Bottom Navigation Bar -->
+
+        <!-- BOTTOM NAV -->
         <nav class="bottom-nav">
-            <!-- 1. Home -->
             <a href="index.html" class="bottom-nav-link"><i class="fas fa-home"></i><span>Home</span></a>
-        
-            <!-- 2. About (About Me) -->
-            <a href="about.html" class="bottom-nav-link"><i class="fas fa-user"></i><span>About</span></a>
-        
-            <!-- 3. Contact -->
+            <a href="projects.html" class="bottom-nav-link"><i class="fas fa-code-branch"></i><span>Work</span></a>
             <a href="contact.html" class="bottom-nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
-        
-            <!-- 4. Resume (Direct Download) -->
-            <a href="resume.html" class="bottom-nav-link" download><i
-                    class="fas fa-file-alt"></i><span>CV</span></a>
-        
-            <!-- 5. MORE BUTTON (Toggles the menu) -->
+
+            <!-- Updated Link: Points to resume.html instead of downloading -->
+            <a href="resume.html" class="bottom-nav-link active"><i class="fas fa-file-alt"></i><span>CV</span></a>
+
             <button id="mobile-menu-btn" class="nav-toggle-btn">
                 <i class="fas fa-bars"></i>
                 <span>Menu</span>
