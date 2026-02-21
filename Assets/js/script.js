@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlEl = document.documentElement; 
     const icon = document.getElementById('theme-icon');
     const toggleBtn = document.getElementById('theme-toggle-btn');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    const currentTheme = localStorage.getItem('theme') || 'light';
     updateIcon(currentTheme);
 
     if(toggleBtn) {
         toggleBtn.addEventListener('click', () => {
             const current = htmlEl.getAttribute('data-theme');
-            const newTheme = current === 'dark' ? 'light' : 'dark';
+            const newTheme = current === 'light' ? 'dark' : 'light';
             htmlEl.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateIcon(newTheme);
