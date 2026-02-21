@@ -26,6 +26,10 @@
                             Experience</a></li>
                     <li class="nav-item"><a href="projects.html" class="nav-link"><i class="fas fa-code-branch"></i>
                             Projects</a></li>
+                    <li class="nav-item"><a href="teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
+                    </li>
+                    <li class="nav-item"><a href="certifications.html" class="nav-link"><i class="fas fa-certificate"></i>
+                            Certifications</a></li>
                     <li class="nav-item"><a href="skills.html" class="nav-link"><i class="fas fa-layer-group"></i>
                             Skills</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i>
@@ -41,7 +45,7 @@
                     <button id="theme-toggle-btn" class="theme-toggle ms-auto"><i class="fas fa-sun"
                             id="theme-icon"></i></button>
                 </div>
-                <div class="small">&copy; <span id="year"></span> B S Shreesha</div>
+                <div class="small text-center">&copy; <span id="year"></span> B S Shreesha</div>
             </div>
         </aside>
 
@@ -92,11 +96,34 @@
                 <p>2-day workshop on AI for Interdisciplinary Sciences.</p>
             </div>
         </main>
+        <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+            <a href="projects.html" class="menu-item"><i class="fas fa-code-branch"></i> Projects</a>
+            <a href="experience.html" class="menu-item"><i class="fas fa-briefcase"></i> Experience</a>
+            <a href="teaching.html" class="menu-item"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
+            <a href="certifications.html" class="menu-item"><i class="fas fa-certificate"></i> Certifications</a>
+            <a href="skills.html" class="menu-item"><i class="fas fa-layer-group"></i> Skills</a>
+        </div>
+        
+        <!-- Bottom Navigation Bar -->
         <nav class="bottom-nav">
+            <!-- 1. Home -->
             <a href="index.html" class="bottom-nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+        
+            <!-- 2. About (About Me) -->
             <a href="about.html" class="bottom-nav-link"><i class="fas fa-user"></i><span>About</span></a>
-            <a href="projects.html" class="bottom-nav-link"><i class="fas fa-code-branch"></i><span>Work</span></a>
+        
+            <!-- 3. Contact -->
             <a href="contact.html" class="bottom-nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
+        
+            <!-- 4. Resume (Direct Download) -->
+            <a href="./Assets/resume/Resume.pdf" class="bottom-nav-link" download><i
+                    class="fas fa-file-alt"></i><span>CV</span></a>
+        
+            <!-- 5. MORE BUTTON (Toggles the menu) -->
+            <button id="mobile-menu-btn" class="nav-toggle-btn">
+                <i class="fas fa-bars"></i>
+                <span>Menu</span>
+            </button>
         </nav>
     </div>
     <script src="./Assets/js/script.js"></script>
