@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>B S Shreesha | Portfolio & Academic Portal</title>
+
+    <link rel="stylesheet" href="./Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Assets/css/bootstrap-icons.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --iisc-navy: #0f172a;
+            --iisc-slate: #334155;
+            --iisc-muted: #64748b;
+            --iisc-border: #cbd5e1;
+            --iisc-bg-light: #f8fafc;
+            --iisc-accent: #2563eb;
+        }
+
+        [data-theme="dark"] {
+            --iisc-navy: #f1f5f9;
+            --iisc-slate: #cbd5e1;
+            --iisc-muted: #94a3b8;
+            --iisc-border: #334155;
+            --iisc-bg-light: #1e293b;
+            --iisc-accent: #60a5fa;
+        }
+
+        html,
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--iisc-slate);
+            letter-spacing: -0.015em;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: #0f172a;
+            color: var(--iisc-slate);
+        }
+
+        .iisc-navbar {
+            background-color: #ffffff !important;
+            border-bottom: 1px solid var(--iisc-border) !important;
+            padding: 0.75rem 0 !important;
+            height: 67px !important;
+            z-index: 1020;
+        }
+
+        [data-theme="dark"] .iisc-navbar {
+            background-color: #1e293b !important;
+            border-bottom-color: #334155 !important;
+        }
+
+        .brand-main {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--iisc-navy);
+            white-space: nowrap;
+        }
+
+        .iisc-navbar .navbar-nav .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--iisc-slate) !important;
+            padding: 0.5rem 0.75rem !important;
+            transition: all 0.15s ease;
+        }
+
+        .iisc-navbar .navbar-nav .nav-link:hover,
+        .iisc-navbar .navbar-nav .nav-link.active {
+            color: var(--iisc-navy) !important;
+            font-weight: 600;
+        }
+
+        .utility-theme-toggle {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--iisc-border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .btn-iisc-contact {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: var(--iisc-navy);
+            color: #ffffff !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            border: 1px solid var(--iisc-navy);
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        [data-theme="dark"] .btn-iisc-contact {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+
+        .iisc-hero {
+            background-color: var(--iisc-bg-light);
+            padding: 5.5rem 0 4.5rem 0;
+            border-bottom: 1px solid var(--iisc-border);
+        }
+
+        .block-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--iisc-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-card {
+            background-color: #ffffff;
+            border: 1px solid var(--iisc-border);
+            border-radius: 6px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        [data-theme="dark"] .portfolio-card {
+            background-color: #1e293b;
+            border-color: #334155;
+        }
+
+        .timeline-item {
+            border-left: 2px solid var(--iisc-border);
+            padding-left: 1.5rem;
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--iisc-accent);
+            border-radius: 50%;
+        }
+
+        .resume-container {
+            border: 1px solid var(--iisc-border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* Nav active pill tuning */
+        .nav-pills .nav-link.active {
+            background-color: var(--iisc-navy);
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .nav-pills .nav-link.active {
+            background-color: #3b82f6;
+        }
+    </style>
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemDark ? 'dark' : 'light');
+            if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        })();
+    </script>
+</head>
+
+<body>
+
+    <nav class="navbar sticky-top iisc-navbar navbar-expand-xl">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a class="navbar-brand d-flex align-items-center text-decoration-none" href="#home">
+                <div class="border rounded-circle d-flex align-items-center justify-content-center me-2 bg-light text-dark"
+                    style="width:40px; height:40px;">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+                <div class="brand-main">B S Shreesha</div>
+            </a>
+
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#portfolioNavbar">
+                <i class="bi bi-list fs-3 text-dark"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="portfolioNavbar">
+                <ul class="navbar-nav mx-auto gap-1">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3 mt-3 mt-xl-0 border-top pt-3 pt-xl-0 border-xl-0">
+                    <div class="utility-theme-toggle text-dark">
+                        <i class="bi bi-moon"></i>
+                    </div>
+                    <a href="#contact" class="btn-iisc-contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="iisc-hero" id="home">
+        <div class="container">
+            <div class="text-uppercase tracking-wider small fw-bold text-primary mb-2">Welcome to my Portfolio</div>
+            <h1 class="display-5 fw-bold text-dark mb-3" style="color: var(--iisc-navy) !important;">B S Shreesha</h1>
+            <p class="fs-5 text-secondary col-lg-8 mb-4">
+                Full-Stack Software Developer, Technical Instructor, and Academic Researcher. Specializing in
+                high-performance application architectures, Data Science infrastructure, and minimal user interfaces.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+                <a href="#about" class="btn btn-outline-dark btn-sm rounded-1 px-3 py-2 fw-medium"> Explore Profile </a>
+                <a href="#projects" class="btn btn-dark btn-sm rounded-1 px-3 py-2 fw-medium bg-dark border-dark"> View
+                    Production Systems </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-5 py-3">
+        <div class="row g-5">
+            <div class="col-12">
+
+                <section id="about" class="mb-5 scroll-mt">
+                    <span class="block-label">About & Qualifications</span>
+                    <div class="portfolio-card">
+                        <div class="row g-4">
+                            <div class="col-lg-7">
+                                <h3 class="fw-bold text-dark mb-3" style="color: var(--iisc-navy) !important;">Biography
+                                </h3>
+                                <p class="text-secondary leading-relaxed">
+                                    I am an academic researcher and robust full-stack systems engineer focused on
+                                    creating functional, deterministic software setups. I manage and write robust code
+                                    environments incorporating web scraping ecosystems, multilingual natural language
+                                    pipelines, and clean user interfaces using strict design frameworks.
+                                </p>
+                                <p class="text-secondary leading-relaxed">
+                                    My approach emphasizes a direct relationship between theoretical models (like
+                                    advanced linear transformations and multi-dimensional calculations) and raw
+                                    execution footprints built cleanly from the ground up.
+                                </p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="p-3 bg-light rounded border h-100">
+                                    <h5 class="fw-bold text-dark mb-3"><i
+                                            class="bi bi-file-earmark-person me-2 text-primary"></i>Quick Actions</h5>
+                                    <p class="small text-secondary">Toggle or view my complete curriculum vitae
+                                        specifications below directly inside the application canvas.</p>
+                                    <button class="btn btn-dark w-100 btn-sm mb-2 rounded-1 fw-semibold border-dark"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#resumeCollapse"
+                                        aria-expanded="false" aria-controls="resumeCollapse">
+                                        <i class="bi bi-eye me-2"></i> Toggle Inline Resume
+                                    </button>
+                                    <a href="./Assets/docs/Resume.pdf" target="_blank"
+                                        class="btn btn-outline-dark w-100 btn-sm rounded-1 fw-semibold">
+                                        <i class="bi bi-download me-2"></i> Download Document (PDF)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse mt-4" id="resumeCollapse">
+                            <div class="resume-container border p-2 bg-secondary bg-opacity-10 rounded">
+                                <div
+                                    class="d-flex justify-content-between align-items-center bg-white p-2 border-bottom">
+                                    <span class="small fw-bold text-dark"><i
+                                            class="bi bi-file-pdf text-danger me-2"></i>Curriculum_Vitae.pdf</span>
+                                    <button type="button" class="btn-close btn-sm shadow-none" data-bs-toggle="collapse"
+                                        data-bs-target="#resumeCollapse"></button>
+                                </div>
+                                <object data="./Assets/docs/Resume.pdf" type="application/pdf" width="100%"
+                                    height="600px" class="rounded-bottom bg-white">
+                                    <div class="p-4 text-center bg-white">
+                                        <p class="text-muted small">Your browser environment does not support inline PDF
+                                            renders.</p>
+                                        <a href="./Assets/docs/Resume.pdf" target="_blank"
+                                            class="btn btn-sm btn-primary">Open Document Separately</a>
+                                    </div>
+                                </object>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section id="experience" class="mb-5">
+                    <span class="block-label">Professional Deployments</span>
+                    <div class="portfolio-card">
+                        <div class="timeline-item">
+                            <span class="badge bg-light text-dark border mb-2 fs-xs fw-semibold">2025 - PRESENT</span>
+                            <h5 class="fw-bold text-dark mb-1">Full-Stack Portal Architect</h5>
+                            <p class="text-muted small mb-2">Institutional Systems & Automation Development</p>
+                            <p class="text-secondary small mb-0">Re-engineered high-volume administrative frameworks and
+                                student management workflows using native optimization parameters. Automated temporary
+                                submission restriction logic and fine-tuned application routing modules safely.</p>
+                        </div>
+                        <div class="timeline-item mb-0 pb-0">
+                            <span class="badge bg-light text-dark border mb-2 fs-xs fw-semibold">2025</span>
+                            <h5 class="fw-bold text-dark mb-1">Data Science Research Engineer</h5>
+                            <p class="text-muted small mb-2">Large-Scale Text Processing Deployments</p>
+                            <p class="text-secondary small mb-0">Built asynchronous multithreaded data extraction
+                                pipelines. Successfully scaled high-capacity model token vectors to manage 1.8M
+                                processing entries safely within restricted infrastructure compute footprints.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="projects" class="mb-5">
+                    <span class="block-label">Featured Production Systems</span>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="portfolio-card h-100 mb-0 d-flex flex-column justify-content-between">
+                                <div>
+                                    <span class="text-primary fw-bold small text-uppercase tracking-wider">Natural
+                                        Language Processing</span>
+                                    <h5 class="fw-bold text-dark mt-1 mb-2">Indic Multilingual Sentiment System</h5>
+                                    <p class="text-secondary small">Engineered an interactive analytics interface built
+                                        on top of customized transformer stacks supporting processing variations for
+                                        native sub-continental scripts. Includes dynamic processing monitoring counters.
+                                    </p>
+                                </div>
+                                <div class="pt-3 border-top d-flex gap-2"><span
+                                        class="badge bg-light text-dark border">Python</span><span
+                                        class="badge bg-light text-dark border">IndicBERT</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-card h-100 mb-0 d-flex flex-column justify-content-between">
+                                <div>
+                                    <span class="text-primary fw-bold small text-uppercase tracking-wider">Computer
+                                        Vision</span>
+                                    <h5 class="fw-bold text-dark mt-1 mb-2">Facial Attendance Verification Kiosk</h5>
+                                    <p class="text-secondary small">Designed an identity validation platform using an
+                                        isolated Django REST API backend environment paired with clean, zero-latency
+                                        state client views.</p>
+                                </div>
+                                <div class="pt-3 border-top d-flex gap-2"><span
+                                        class="badge bg-light text-dark border">ReactJS</span><span
+                                        class="badge bg-light text-dark border">Django API</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="teaching" class="mb-5">
+                    <span class="block-label">Instruction & Pedagogy</span>
+                    <div class="portfolio-card">
+                        <h4 class="fw-bold text-dark mb-3" style="color: var(--iisc-navy) !important;">Course
+                            Architecture: Math4DS</h4>
+                        <p class="text-secondary small mb-4">Developed a full 12-week comprehensive mathematical track
+                            designed specifically to give research candidates and machine learning engineers an
+                            end-to-end mathematical understanding from matrix operations to gradient flows.</p>
+
+                        <div class="row g-3">
+                            <div class="col-sm-4">
+                                <div class="p-3 border rounded bg-light">
+                                    <h6 class="fw-bold text-dark mb-1">Linear Algebra</h6>
+                                    <span class="text-muted small">SVD, PCA & Bases Mapping</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="p-3 border rounded bg-light">
+                                    <h6 class="fw-bold text-dark mb-1">Calculus & Optimization</h6>
+                                    <span class="text-muted small">Jacobians, Hessians & Momentum SGD</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="p-3 border rounded bg-light">
+                                    <h6 class="fw-bold text-dark mb-1">Probability Theory</h6>
+                                    <span class="text-muted small">MLE, MAP Estimation & Classifiers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="certifications" class="mb-5">
+                    <span class="block-label">Certifications & Validations</span>
+                    <div class="portfolio-card">
+                        <ul class="list-group list-group-flush">
+                            <li
+                                class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0">Advanced Data Science Systems & Vector
+                                        Computations</h6>
+                                    <small class="text-muted">High-Performance Neural Engineering Systems</small>
+                                </div>
+                                <span class="badge bg-light text-dark border px-3 py-2">Verified</span>
+                            </li>
+                            <li
+                                class="list-group-item bg-transparent px-0 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0">Full-Stack Enterprise Pipeline Architecture</h6>
+                                    <small class="text-muted">Secure Workflow Management Implementations</small>
+                                </div>
+                                <span class="badge bg-light text-dark border px-3 py-2">Verified</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="skills" class="mb-5">
+                    <span class="block-label">Technical Matrix</span>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="portfolio-card h-100 mb-0">
+                                <h6 class="fw-bold text-dark mb-3"><i
+                                        class="bi bi-code-slash text-primary me-2"></i>Software Languages & Contexts
+                                </h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-light text-dark border px-3 py-2">Python</span>
+                                    <span class="badge bg-light text-dark border px-3 py-2">PHP</span>
+                                    <span class="badge bg-light text-dark border px-3 py-2">JavaScript (ES6+)</span>
+                                    <span class="badge bg-light text-dark border px-3 py-2">SQL Platforms</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-card h-100 mb-0">
+                                <h6 class="fw-bold text-dark mb-3"><i
+                                        class="bi bi-layers-half text-primary me-2"></i>Framework Environments</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-light text-dark border px-3 py-2">ReactJS</span>
+                                    <span class="badge bg-light text-dark border px-3 py-2">Django Suite</span>
+                                    <span class="badge bg-light text-dark border px-3 py-2">Bootstrap 5 (Strict
+                                        Utility)</span>
+                                    <span class="badge bg-light text-dark border px-3 py-2">REST API
+                                        Architectures</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="mb-0">
+                    <span class="block-label">Get in Touch</span>
+                    <div class="portfolio-card mb-0">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-lg-6">
+                                <h3 class="fw-bold text-dark mb-2" style="color: var(--iisc-navy) !important;">Let's
+                                    Collaborate</h3>
+                                <p class="text-secondary small mb-0">Available for technical architecture consulting,
+                                    system pipeline design audit reviews, or institutional curriculum coordination
+                                    planning paths.</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-center gap-3 p-2 border rounded bg-light">
+                                        <div class="bg-white rounded p-2 text-primary border"><i
+                                                class="bi bi-envelope-at-fill"></i></div>
+                                        <div><small class="text-muted d-block fs-xs">ELECTRONIC MAIL</small><span
+                                                class="small fw-semibold text-dark">your.email@example.com</span></div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3 p-2 border rounded bg-light">
+                                        <div class="bg-white rounded p-2 text-dark border"><i class="bi bi-github"></i>
+                                        </div>
+                                        <div><small class="text-muted d-block fs-xs">OPEN SOURCE INDEX</small><a
+                                                href="https://github.com" target="_blank"
+                                                class="small fw-semibold text-primary text-decoration-none">github.com/yourprofile</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <p class="mb-0">&copy; <span id="year"></span> B S Shreesha Portfolio Portal</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="footer-link">Back to Top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./Assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dark Mode Toggle Logic
+        (function () {
+            const themeToggle = document.querySelector('.utility-theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const html = document.documentElement;
+
+            themeToggle.addEventListener('click', function () {
+                const current = html.getAttribute('data-theme');
+                if (current === 'dark') {
+                    html.removeAttribute('data-theme');
+                    themeIcon.className = 'bi bi-moon';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    themeIcon.className = 'bi bi-sun';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        })();
+
+        // Simple Single Page Active Navigation Highlighting
+        window.addEventListener('scroll', () => {
+            let fromTop = window.scrollY + 80;
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                let section = document.querySelector(link.hash);
+                if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                    document.querySelectorAll('.navbar-nav .nav-link').forEach(n => n.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

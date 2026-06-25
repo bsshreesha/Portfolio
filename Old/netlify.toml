@@ -1,0 +1,44 @@
+[[redirects]]
+  from = "/admin/*"
+  to = "/403.html"
+  status = 403
+
+  [[redirects]]
+  from = "/about"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/experience"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/teaching"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/certifications"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/skills"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/resume"
+  to = "/index.html"
+  status = 200

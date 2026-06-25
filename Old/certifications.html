@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Licenses and certifications of B S Shreesha - Deep Learning, Data Science, Mathematics, and Big Data.">
+    <meta name="author" content="B S Shreesha">
+    <title>Certifications | B S Shreesha</title>
+    <link href="./Assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./Assets/css/styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./Assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicon-16x16.png">
+    <link rel="manifest" href="./Assets/img/site.webmanifest">
+    <script>
+        (function () { const theme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', theme); })();
+    </script>
+    <style>
+        /* ============================================
+           CERT CARDS - STYLING MODERATIONS
+           ============================================ */
+        .certifications-page .cert-card,
+        .main-content .cert-card {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 1.15rem 1.5rem !important;
+            margin-bottom: 1rem !important;
+            border-radius: 12px !important;
+            background: var(--card-bg, rgba(255, 255, 255, 0.03)) !important;
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.06)) !important;
+            text-decoration: none !important;
+            color: inherit !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            cursor: pointer !important;
+            gap: 1rem !important;
+        }
+
+        .certifications-page .cert-card:hover,
+        .main-content .cert-card:hover {
+            transform: translateY(-2px) !important;
+            border-color: var(--accent-color, #38bdf8) !important;
+            box-shadow: var(--shadow-glow) !important;
+        }
+
+        .cert-card.selected-desktop {
+            border-color: var(--accent-color, #38bdf8) !important;
+            background: var(--accent-light) !important;
+        }
+
+        .certifications-page .cert-info,
+        .main-content .cert-info {
+            flex: 1 !important;
+            min-width: 0 !important;
+        }
+
+        .certifications-page .cert-info h3,
+        .main-content .cert-info h3 {
+            font-size: 1.05rem !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.3rem !important;
+            color: var(--text-primary) !important;
+            line-height: 1.4 !important;
+        }
+
+        .certifications-page .cert-info p,
+        .main-content .cert-info p {
+            font-size: 0.85rem !important;
+            color: var(--text-secondary) !important;
+            margin: 0 !important;
+        }
+
+        .certifications-page .cert-arrow,
+        .main-content .cert-arrow {
+            flex-shrink: 0 !important;
+            color: var(--accent-color, #38bdf8) !important;
+            font-size: 1.1rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: transform 0.2s ease !important;
+        }
+
+        .certifications-page .cert-card:hover .cert-arrow,
+        .main-content .cert-card:hover .cert-arrow {
+            transform: translateX(4px) !important;
+        }
+
+        /* ============================================
+           DESKTOP PANEL METADATA INJECTION PANEL
+           ============================================ */
+        .desktop-meta-panel {
+            background: var(--bg-sidebar);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+            display: none;
+            /* Controlled via JavaScript upon card select */
+        }
+
+        .desktop-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .desktop-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .desktop-meta-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .desktop-meta-value {
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .desktop-meta-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-top: 1px dashed var(--border-color);
+            padding-top: 0.65rem;
+            line-height: 1.5;
+        }
+
+        .desktop-viewer-container {
+            display: block;
+        }
+
+        @media (max-width: 991px) {
+            .desktop-viewer-container {
+                display: none !important;
+            }
+        }
+
+        /* ============================================
+           MOBILE OVERLAY MODAL SYSTEM STYLES
+           ============================================ */
+        .cert-modal {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 99999 !important;
+            display: none !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1rem !important;
+        }
+
+        .cert-modal.show {
+            display: flex !important;
+        }
+
+        .cert-modal-overlay {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(15, 23, 42, 0.75) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            z-index: 1 !important;
+        }
+
+        .cert-modal-content {
+            background: var(--card-bg, #1e293b) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 16px !important;
+            width: 100% !important;
+            max-width: 480px !important;
+            max-height: 85vh !important;
+            overflow-y: auto !important;
+            position: relative !important;
+            z-index: 2 !important;
+            box-shadow: var(--shadow-lg) !important;
+        }
+
+        .cert-modal-header {
+            padding: 1.25rem 1.25rem 0.75rem 1.25rem !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: space-between !important;
+            gap: 0.75rem !important;
+            border-bottom: 1px solid var(--border-color) !important;
+        }
+
+        .cert-modal-icon {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 8px !important;
+            background: var(--accent-light) !important;
+            color: var(--accent-color) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 1.15rem !important;
+            margin-bottom: 0.75rem !important;
+        }
+
+        .cert-modal-title {
+            font-size: 1.15rem !important;
+            font-weight: 700 !important;
+            color: var(--text-primary) !important;
+            margin: 0 0 0.25rem 0 !important;
+            line-height: 1.3 !important;
+        }
+
+        .cert-modal-subtitle {
+            font-size: 0.85rem !important;
+            color: var(--text-secondary) !important;
+            margin: 0 !important;
+        }
+
+        .cert-modal-close {
+            background: var(--item-hover) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-secondary) !important;
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50% !important;
+            font-size: 0.9rem !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .cert-modal-body {
+            padding: 1rem 1.25rem !important;
+        }
+
+        .cert-detail-row {
+            display: flex !important;
+            gap: 0.75rem !important;
+            padding: 0.65rem 0 !important;
+            border-bottom: 1px solid var(--border-color) !important;
+        }
+
+        .cert-detail-row:last-child {
+            border-bottom: none !important;
+        }
+
+        .cert-detail-icon {
+            color: var(--accent-color) !important;
+            font-size: 0.9rem !important;
+            margin-top: 2px !important;
+            width: 16px;
+            text-align: center;
+        }
+
+        .cert-detail-label {
+            font-size: 0.7rem !important;
+            text-transform: uppercase !important;
+            color: var(--text-secondary) !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.05em;
+        }
+
+        .cert-detail-value {
+            font-size: 0.88rem !important;
+            color: var(--text-primary) !important;
+            line-height: 1.4 !important;
+        }
+
+        body.cert-modal-open {
+            overflow: hidden !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div>
+                <img src="./Assets/img/BSShreesha.jpg" alt="B S Shreesha" class="profile-img" loading="lazy">
+                <h1 class="name-title">B S Shreesha</h1>
+                <div class="job-title">Data Science & AI Researcher</div>
+                <ul class="nav-menu mt-4">
+                    <li class="nav-item"><a href="/index.html" class="nav-link" data-page="home"><i
+                                class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="/about.html" class="nav-link" data-page="about"><i
+                                class="fas fa-user"></i> About</a></li>
+                    <li class="nav-item"><a href="/experience.html" class="nav-link" data-page="experience"><i
+                                class="fas fa-briefcase"></i> Experience</a></li>
+                    <li class="nav-item"><a href="/projects.html" class="nav-link" data-page="projects"><i
+                                class="fas fa-code-branch"></i> Projects</a></li>
+                    <li class="nav-item"><a href="/teaching.html" class="nav-link" data-page="teaching"><i
+                                class="fas fa-chalkboard-teacher"></i> Teaching</a></li>
+                    <li class="nav-item"><a href="/certifications.html" class="nav-link active"
+                            data-page="certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
+                    <li class="nav-item"><a href="/skills.html" class="nav-link" data-page="skills"><i
+                                class="fas fa-layer-group"></i> Skills</a></li>
+                    <li class="nav-item"><a href="/contact.html" class="nav-link" data-page="contact"><i
+                                class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+                <a href="/resume.html" class="btn-resume" data-page="resume"><i class="fas fa-file-alt me-2"></i> View
+                    Resume</a>
+            </div>
+            <div>
+                <div class="social-links mb-3">
+                    <a href="https://github.com/bsshreesha" target="_blank" rel="noopener noreferrer"
+                        class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/bsshreesha/" target="_blank" rel="noopener noreferrer"
+                        class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <button id="theme-toggle-btn" class="theme-toggle ms-auto" aria-label="Toggle theme"><i
+                            class="fas fa-sun" id="theme-icon"></i></button>
+                </div>
+                <div class="small text-center" style="color: var(--text-secondary); font-size: 0.8rem;">&copy; <span
+                        id="year"></span> B S Shreesha</div>
+            </div>
+        </aside>
+
+        <main class="main-content" id="main-content" style="max-width: 1450px;">
+            <div class="page-content">
+                <h1 class="page-title">Licenses & Certifications</h1>
+
+                <div class="row">
+                    <div class="col-lg-5 mb-4">
+                        <p style="font-size: 1.05rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-hand-pointer"
+                                style="margin-right: 0.5rem; color: var(--accent-color);"></i>Select any certificate row
+                            entry.
+                        </p>
+
+                        <div class="cert-card" data-title="Foundations of Deep Learning: Concepts and Applications"
+                            data-provider="NPTEL (IISc Bengaluru)" data-category="Neural Networks & AI" data-duration="12 Weeks"
+                            data-credits="3 Credits" data-icon="fa-brain"
+                            data-skills="Python, TensorFlow, Neural Networks"
+                            data-description="Comprehensive course covering deep neural networks, CNNs, RNNs, and reinforcement learning fundamentals."
+                            data-url="./Assets/certificates/Foundations_of_Deep_Learning.pdf">
+                            <div class="cert-info">
+                                <h3>Foundations of Deep Learning: Concepts and Applications</h3>
+                                <p><i class="fas fa-university" style="margin-right: 0.3rem;"></i>NPTEL (IISc Bengaluru) &nbsp;|&nbsp;
+                                    Neural Networks & AI</p>
+                            </div>
+                            <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+
+                        <div class="cert-card" data-title="Coding Mathematics using Python" data-provider="Udemy"
+                            data-category="Computational Mathematics" data-duration="Self-Paced" data-credits="-"
+                            data-icon="fa-calculator" data-skills="Python, NumPy, Matplotlib, Linear Algebra"
+                            data-description="Applied mathematical concepts using Python including linear algebra, calculus, and numerical methods."
+                            data-url="#">
+                            <div class="cert-info">
+                                <h3>Coding Mathematics using Python</h3>
+                                <p><i class="fas fa-university" style="margin-right: 0.3rem;"></i>Udemy &nbsp;|&nbsp;
+                                    Computational Mathematics</p>
+                            </div>
+                            <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+
+                        <div class="cert-card" data-title="Introduction to Data Science & ML"
+                            data-provider="Simplilearn" data-category="Data Science Fundamentals"
+                            data-duration="Self-Paced" data-credits="-" data-icon="fa-chart-line"
+                            data-skills="Pandas, Scikit-learn, Data Analysis, Statistics"
+                            data-description="Foundation course in data science covering data preprocessing, exploratory analysis, and machine learning basics."
+                            data-url="#">
+                            <div class="cert-info">
+                                <h3>Introduction to Data Science & ML</h3>
+                                <p><i class="fas fa-university" style="margin-right: 0.3rem;"></i>Simplilearn
+                                    &nbsp;|&nbsp; Data Science Fundamentals</p>
+                            </div>
+                            <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+
+                        <div class="cert-card" data-title="Hadoop Fundamentals" data-provider="Simplilearn"
+                            data-category="Big Data Technologies" data-duration="Self-Paced" data-credits="-"
+                            data-icon="fa-server" data-skills="Hadoop, HDFS, MapReduce, Big Data"
+                            data-description="Introduction to Apache Hadoop ecosystem including HDFS, MapReduce, and YARN architecture."
+                            data-url="#">
+                            <div class="cert-info">
+                                <h3>Hadoop Fundamentals</h3>
+                                <p><i class="fas fa-university" style="margin-right: 0.3rem;"></i>Simplilearn
+                                    &nbsp;|&nbsp; Big Data Technologies</p>
+                            </div>
+                            <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+
+                        <div class="cert-card" data-title="Matplotlib Certification" data-provider="Cognitive Classes"
+                            data-category="Data Visualization" data-duration="Self-Paced" data-credits="-"
+                            data-icon="fa-chart-area" data-skills="Matplotlib, Data Visualization, Python, Plotting"
+                            data-description="Certification in data visualization using Python Matplotlib library for creating publication-quality plots."
+                            data-url="#">
+                            <div class="cert-info">
+                                <h3>Matplotlib Certification</h3>
+                                <p><i class="fas fa-university" style="margin-right: 0.3rem;"></i>Cognitive Classes
+                                    &nbsp;|&nbsp; Data Visualization</p>
+                            </div>
+                            <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+
+                        <div class="cert-card" data-title="Advanced Engineering Mathematics"
+                            data-provider="Course Completion" data-category="Academic Excellence"
+                            data-duration="1 Semester" data-credits="-" data-icon="fa-square-root-alt"
+                            data-skills="Mathematics, Differential Equations, Complex Analysis, Transforms"
+                            data-description="Advanced level course completion in engineering mathematics covering differential equations, transforms, and complex analysis."
+                            data-url="#">
+                            <div class="cert-info">
+                                <h3>Advanced Engineering Mathematics</h3>
+                                <p><i class="fas fa-university" style="margin-right: 0.3rem;"></i>Course Completion
+                                    &nbsp;|&nbsp; Academic Excellence</p>
+                            </div>
+                            <div class="cert-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 desktop-viewer-container">
+                        <div class="pdf-viewer-card" style="position: sticky; top: 2rem;">
+
+                            <div class="pdf-toolbar">
+                                <div class="pdf-info">
+                                    <i class="fas fa-file-pdf"
+                                        style="color: var(--accent-color); font-size: 1.2rem;"></i>
+                                    <span id="desktopPdfName" style="font-weight: 600; font-size: 0.95rem;">Select a
+                                        certificate to view details and preview</span>
+                                </div>
+                                <div class="pdf-actions">
+                                    <a id="desktopDownloadBtn" href="#" download class="pdf-btn pdf-btn-primary"
+                                        style="display: none; padding: 6px 14px; font-size:0.85rem; border-radius:6px; text-decoration:none;">
+                                        <i class="fas fa-download"></i> Download PDF
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div id="desktopMetaPanel" class="desktop-meta-panel">
+                                <div class="desktop-meta-grid">
+                                    <div class="desktop-meta-item">
+                                        <div class="desktop-meta-label">Provider</div>
+                                        <div id="deckProvider" class="desktop-meta-value">-</div>
+                                    </div>
+                                    <div class="desktop-meta-item">
+                                        <div class="desktop-meta-label">Category</div>
+                                        <div id="deckCategory" class="desktop-meta-value">-</div>
+                                    </div>
+                                    <div class="desktop-meta-item">
+                                        <div class="desktop-meta-label">Duration</div>
+                                        <div id="deckDuration" class="desktop-meta-value">-</div>
+                                    </div>
+                                    <div class="desktop-meta-item">
+                                        <div class="desktop-meta-label">Credits</div>
+                                        <div id="deckCredits" class="desktop-meta-value">-</div>
+                                    </div>
+                                </div>
+                                <div id="deckDescription" class="desktop-meta-desc">-</div>
+                            </div>
+
+                            <div class="pdf-frame-container" id="desktopPdfContainer" style="height: 620px;">
+                                <iframe id="desktopPdfIframe" class="pdf-iframe" src="about:blank"></iframe>
+                                <div class="pdf-fallback" style="display: flex;">
+                                    <i class="fas fa-certificate"
+                                        style="font-size: 3.5rem; color: var(--border-color); margin-bottom: 1rem;"></i>
+                                    <h4>No Certificate Loaded</h4>
+                                    <p
+                                        style="font-size: 0.9rem; max-width: 320px; margin: 0 auto; color: var(--text-secondary);">
+                                        Select any credential row on the left panel to load live document details and
+                                        secure file preview frame here.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="certModal" class="cert-modal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="cert-modal-overlay"></div>
+            <div class="cert-modal-content">
+                <div class="cert-modal-header">
+                    <div style="flex: 1; min-width: 0;">
+                        <div class="cert-modal-icon"><i id="modalIcon" class="fas fa-certificate"></i></div>
+                        <h2 id="modalTitle" class="cert-modal-title">-</h2>
+                        <p id="modalSubtitle" class="cert-modal-subtitle">-</p>
+                    </div>
+                    <button class="cert-modal-close" id="modalCloseBtn" aria-label="Close modal"><i
+                            class="fas fa-times"></i></button>
+                </div>
+                <div class="cert-modal-body">
+                    <a id="modalPdfLink" href="#" target="_blank" class="cert-pdf-preview">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>View Full Certificate Document</span>
+                    </a>
+                    <div class="cert-detail-row">
+                        <div class="cert-detail-icon"><i class="fas fa-university"></i></div>
+                        <div>
+                            <div class="cert-detail-label">Provider</div>
+                            <div id="modalProvider" class="cert-detail-value">-</div>
+                        </div>
+                    </div>
+                    <div class="cert-detail-row">
+                        <div class="cert-detail-icon"><i class="fas fa-tag"></i></div>
+                        <div>
+                            <div class="cert-detail-label">Category</div>
+                            <div id="modalCategory" class="cert-detail-value">-</div>
+                        </div>
+                    </div>
+                    <div class="cert-detail-row">
+                        <div class="cert-detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div>
+                            <div class="cert-detail-label">Duration</div>
+                            <div id="modalDate" class="cert-detail-value">-</div>
+                        </div>
+                    </div>
+                    <div class="cert-detail-row">
+                        <div class="cert-detail-icon"><i class="fas fa-id-card"></i></div>
+                        <div>
+                            <div class="cert-detail-label">Credits</div>
+                            <div id="modalCredential" class="cert-detail-value">-</div>
+                        </div>
+                    </div>
+                    <div class="cert-detail-row">
+                        <div class="cert-detail-icon"><i class="fas fa-align-left"></i></div>
+                        <div>
+                            <div class="cert-detail-label">Description</div>
+                            <div id="modalDescription" class="cert-detail-value">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+            <a href="/projects.html" class="menu-item" data-page="projects"><i class="fas fa-code-branch"></i>
+                Projects</a>
+            <a href="/experience.html" class="menu-item" data-page="experience"><i class="fas fa-briefcase"></i>
+                Experience</a>
+            <a href="/teaching.html" class="menu-item" data-page="teaching"><i class="fas fa-chalkboard-teacher"></i>
+                Teaching</a>
+            <a href="/certifications.html" class="menu-item" data-page="certifications"><i
+                    class="fas fa-certificate"></i> Certifications</a>
+            <a href="/skills.html" class="menu-item" data-page="skills"><i class="fas fa-layer-group"></i> Skills</a>
+        </div>
+        <nav class="bottom-nav">
+            <a href="/index.html" class="bottom-nav-link" data-page="home"><i
+                    class="fas fa-home"></i><span>Home</span></a>
+            <a href="/about.html" class="bottom-nav-link" data-page="about"><i
+                    class="fas fa-user"></i><span>About</span></a>
+            <a href="/contact.html" class="bottom-nav-link" data-page="contact"><i
+                    class="fas fa-envelope"></i><span>Contact</span></a>
+            <a href="/resume.html" class="bottom-nav-link" data-page="resume"><i
+                    class="fas fa-file-alt"></i><span>CV</span></a>
+            <button id="mobile-menu-btn" class="nav-toggle-btn"><i class="fas fa-bars"></i><span>Menu</span></button>
+        </nav>
+    </div>
+    <script src="./Assets/js/script.js"></script>
+</body>
+
+</html>

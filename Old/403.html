@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>403 Forbidden | B S Shreesha</title>
+    <link href="./Assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./Assets/css/styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./Assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicon-16x16.png">
+    <script>
+        (function () { const theme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', theme); })();
+    </script>
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.05em;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .error-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-detail {
+            margin-top: 2rem;
+            padding: 1rem 1.5rem;
+            background: var(--item-hover);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: inline-block;
+        }
+
+        .error-detail i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-icon {
+                font-size: 3rem;
+            }
+
+            .error-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-page">
+        <div>
+            <div class="error-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="error-code">403</div>
+            <h1 class="error-title">Access Forbidden</h1>
+            <p class="error-desc">
+                You don't have permission to access this resource. This area is restricted and requires proper
+                authorization.
+            </p>
+            <div class="error-actions">
+                <a href="index.html" class="btn-primary-custom">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="contact.html" class="btn-outline-custom">
+                    <i class="fas fa-envelope"></i> Contact Support
+                </a>
+            </div>
+            <div class="error-detail">
+                <i class="fas fa-fingerprint"></i>
+                <span id="error-id">ERR-403-" + Math.random().toString(36).substr(2, 9).toUpperCase() + "</span>
+            </div>
+            <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                <i class="fas fa-clock" style="margin-right: 0.3rem;"></i>
+                <span id="timestamp"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('en-IN', {
+            timeZone: 'Asia/Kolkata',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        // Generate unique error ID
+        document.getElementById('error-id').textContent = 'ERR-403-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    </script>
+</body>
+
+</html>

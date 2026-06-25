@@ -3,110 +3,445 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>B S Shreesha | Home</title>
-    <link href="./Assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./Assets/css/styles.css">
+
+    <link rel="stylesheet" href="./Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Assets/css/bootstrap-icons.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./Assets/css/style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="./Assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicon-16x16.png">
     <link rel="manifest" href="./Assets/img/site.webmanifest">
+
+    <!-- Blocking theme script - prevents flash of wrong theme -->
     <script>
-        (function () { const theme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', theme); })();
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemDark ? 'dark' : 'light');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
     </script>
+    <base>
 </head>
 
 <body>
-    <div class="wrapper">
-        <aside class="sidebar">
-            <div>
-                <img src="./Assets/img/BSShreesha.jpg" alt="B S Shreesha" class="profile-img">
-                <h1 class="name-title">B S Shreesha</h1>
-                <div class="job-title">Data Science & AI Researcher</div>
-                <ul class="nav-menu mt-4">
-                    <li class="nav-item"><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-user"></i> About</a>
-                    </li>
-                    <li class="nav-item"><a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i>
-                            Experience</a></li>
-                    <li class="nav-item"><a href="projects.html" class="nav-link"><i class="fas fa-code-branch"></i>
-                            Projects</a></li>
-                    <li class="nav-item"><a href="teaching.html" class="nav-link"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
-                    </li>
-                    <li class="nav-item"><a href="certifications.html" class="nav-link"><i class="fas fa-certificate"></i>
-                            Certifications</a></li>
-                    <li class="nav-item"><a href="skills.html" class="nav-link"><i class="fas fa-layer-group"></i>
-                            Skills</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i>
-                            Contact</a></li>
-                </ul>
-                <a href="resume.html" class="btn-resume"><i class="fas fa-file-alt me-2"></i> View Resume</a>
+    <div id="global-loader" style="
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100vw; 
+        height: 100vh; 
+        background-color: var(--iisc-bg-light); 
+        z-index: 9999; 
+        display: none !important; /* Browser hides this completely during initial HTML parsing */
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+    ">
+        <div style="width: 240px; max-width: 80%;">
+            <div class="progress"
+                style="height: 6px; background-color: var(--iisc-border); border-radius: 4px; overflow: hidden;">
+                <div id="loader-progress-bar" class="progress-bar" role="progressbar"
+                    style="width: 0%; background-color: var(--iisc-accent); transition: width 0.1s linear;"></div>
             </div>
-            <div>
-                <div class="social-links mb-3">
-                    <a href="https://github.com/bsshreesha" class="social-icon"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/bsshreesha/" class="social-icon"><i
-                            class="fab fa-linkedin"></i></a>
-                    <button id="theme-toggle-btn" class="theme-toggle ms-auto"><i class="fas fa-sun"
-                            id="theme-icon"></i></button>
-                </div>
-                <div class="small text-center">&copy; <span id="year"></span> B S Shreesha</div>
+            <div class="text-center mt-2"
+                style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--iisc-muted); letter-spacing: 0.05em;">
+                LOADING <span id="loader-counter">0</span>%
             </div>
-        </aside>
-
-        <main class="main-content d-flex align-items-center">
-            <div>
-                <h1 class="display-4 fw-bold mb-4">Hello, I'm Shreesha.</h1>
-                <p class="fs-4 text-secondary mb-5" style="max-width: 700px;">
-                    A Graduate Student in Information Science exploring the depths of
-                    <span style="color: var(--accent-color)">Data Science</span>,
-                    <span style="color: var(--accent-color)">Mathematics</span>, and
-                    <span style="color: var(--accent-color)">Artificial Intelligence</span>.
-                </p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="projects.html" class="btn btn-primary px-4 py-2 rounded-pill">View My Work</a>
-                    <a href="contact.html" class="btn btn-outline-secondary px-4 py-2 rounded-pill">Contact Me</a>
-                    <a href="resume.html" target="_blank" class="btn-resume" view><i class="fas fa-download me-2"></i>
-                        Resume</a>
-                </div>
-            </div>
-        </main>
-
-        <!-- Drop-up Menu (Hidden by default) -->
-        <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-            <a href="projects.html" class="menu-item"><i class="fas fa-code-branch"></i> Projects</a>
-            <a href="experience.html" class="menu-item"><i class="fas fa-briefcase"></i> Experience</a>
-            <a href="teaching.html" class="menu-item"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
-            <a href="certifications.html" class="menu-item"><i class="fas fa-certificate"></i> Certifications</a>
-            <a href="skills.html" class="menu-item"><i class="fas fa-layer-group"></i> Skills</a>
         </div>
-        
-        <!-- Bottom Navigation Bar -->
-        <nav class="bottom-nav">
-            <!-- 1. Home -->
-            <a href="index.html" class="bottom-nav-link"><i class="fas fa-home"></i><span>Home</span></a>
-        
-            <!-- 2. About (About Me) -->
-            <a href="about.html" class="bottom-nav-link"><i class="fas fa-user"></i><span>About</span></a>
-        
-            <!-- 3. Contact -->
-            <a href="contact.html" class="bottom-nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
-        
-            <!-- 4. Resume (Direct Download) -->
-            <a href="resume.html" class="bottom-nav-link"><i
-                    class="fas fa-file-alt"></i><span>CV</span></a>
-        
-            <!-- 5. MORE BUTTON (Toggles the menu) -->
-            <button id="mobile-menu-btn" class="nav-toggle-btn">
-                <i class="fas fa-bars"></i>
-                <span>Menu</span>
-            </button>
-        </nav>
     </div>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <script src="./Assets/js/script.js"></script>
+
+    <nav class="navbar sticky-top iisc-navbar">
+        <div class="container position-relative d-flex align-items-center justify-content-between flex-nowrap">
+
+            <a class="navbar-brand d-flex align-items-center text-decoration-none me-2" href="index.html"
+                style="padding: 0; margin: 0;">
+                <div class="iisc-nav-logo-placeholder me-2">
+                    <img src="./Assets/img/BSShreesha.jpg" alt="B S Shreesha" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                <div class="brand-main" data-trn="nav_title">B S Shreesha</div>
+            </a>
+
+            <ul
+                class="navbar-nav flex-row align-items-center d-none d-xl-flex position-absolute start-50 translate-middle-x">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html" data-trn="menu_home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html" data-trn="menu_about">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="facultyDrop" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" data-trn="menu_experience">
+                        Experience
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="facultyDrop">
+                        <li>
+                            <a class="dropdown-menu-item text-decoration-none" href="teaching.html" data-trn="sub_teaching">Teaching</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-menu-item text-decoration-none" href="publications.html"
+                                data-trn="sub_publications">Publications</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="projects.html" data-trn="menu_projects">Projects</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="certifications.html" data-trn="menu_certifications">Certifications</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="skills.html" data-trn="menu_skills">Skills</a>
+                </li>
+            </ul>
+
+            <div class="nav-utility-cluster d-none d-xl-flex flex-shrink-0">
+                <div class="dropdown me-4">
+                    <div class="utility-lang dropdown-toggle" id="desktopLangSelector" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-globe me-1"></i><span id="currentDesktopLang">EN</span>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm"
+                        aria-labelledby="desktopLangSelector">
+                        <li><button class="dropdown-menu-item" onclick="switchLanguage('en')">English</button></li>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="utility-theme-toggle me-4">
+                    <i class="bi bi-moon"></i>
+                </div>
+                <a href="contact.html" class="btn-iisc-contact" data-trn="contact_us">Contact</a>
+            </div>
+
+            <button class="btn-hamburger-menu d-xl-none flex-shrink-0 ms-auto" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenuDrawer" aria-controls="mobileMenuDrawer">
+                <i class="bi bi-list fs-4"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end iisc-offcanvas d-xl-none" tabindex="-1" id="mobileMenuDrawer"
+        aria-labelledby="mobileMenuDrawerLabel">
+        <div class="offcanvas-header d-flex align-items-center justify-content-between">
+            <span class="offcanvas-label-text" data-trn="lbl_menu">Menu</span>
+            <button type="button" class="btn-close shadow-none text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <div class="accordion mobile-sub-accordion" id="drawerLinksAccordion">
+                <div class="accordion-item">
+                    <a href="index.html" class="mobile-menu-link active" data-trn="menu_home">Home</a>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="about.html" class="mobile-menu-link" data-trn="menu_about">About</a>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#mobFacultyCollapse" data-trn="menu_experience">
+                            Experience
+                        </button>
+                    </h2>
+                    <div id="mobFacultyCollapse" class="accordion-collapse collapse"
+                        data-bs-parent="#drawerLinksAccordion">
+                        <ul class="mobile-sub-list">
+                            <li class="mobile-sub-item"><a href="teaching.html" data-trn="sub_teaching">Teaching</a></li>
+                            <li class="mobile-sub-item"><a href="publications.html" data-trn="sub_publications">Publications</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="projects.html" class="mobile-menu-link" data-trn="menu_projects">Projects</a>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="certifications.html" class="mobile-menu-link" data-trn="menu_certifications">Certifications</a>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="skills.html" class="mobile-menu-link" data-trn="menu_skills">Skills</a>
+                </div>
+            </div>
+
+            <div class="mobile-drawer-action-container">
+                <a href="contact.html" class="btn-mobile-contact" data-trn="contact_us">Contact Us</a>
+            </div>
+
+            <div class="mobile-external-links">
+                <!-- Theme Toggle Section -->
+                <span class="mobile-lang-section-label">
+                    <i class="bi bi-circle-half me-1"></i> Appearance
+                </span>
+                <div class="mobile-lang-pill-row mb-4">
+                    <!-- This pill acts as the mobile toggle -->
+                    <div class="lang-pill utility-theme-toggle-mobile" id="mobile-theme-pill">
+                        <i class="bi bi-moon me-2"></i>
+                        <span id="theme-text-mobile">Dark Mode</span>
+                    </div>
+                </div>
+            
+                <!-- Language Section -->
+                <span class="mobile-lang-section-label">
+                    <i class="bi bi-globe me-1"></i> Language
+                </span>
+                <div class="mobile-lang-pill-row">
+                    <div class="lang-pill active" id="pill-en" onclick="switchLanguage('en')">English</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="iisc-hero">
+        <div class="container">
+            <div class="course-code" data-trn="hero_tag">MTech Data Science Scholar</div>
+            <h1 class="course-title" data-trn="hero_title">Hello, I'm B S Shreesha.</h1>
+            <p class="course-desc" data-trn="hero_desc">A Graduate Student exploring the computational boundaries of
+                <span class="text-mono-bold">Data Science</span>,
+                <span class="text-mono-bold">Mathematics</span>, and
+                <span class="text-mono-bold">Artificial Intelligence</span>.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3 mb-2">
+
+
+            <a href="./Assets/resume/Resume.pdf" target="_blank" class="btn-syllabus">
+                <i class="bi bi-file-earmark-pdf text-danger me-2"></i><span data-trn="hero_btn">Download Resume
+                    (PDF)</span>
+            </a>
+
+            <a href="contact.html" target="_blank" class="btn-syllabus">
+                <i class="bi bi-envelope text-danger me-2"></i><span data-trn="hero_btn">Contact Me</span>
+            </a>
+
+            </div>
+
+            <!-- <div class="metrics-grid">
+                <div class="metric-unit">
+                    <div class="metric-val">MTech Data Science</div>
+                    <div class="metric-lbl" data-trn="m_credits">JSS Academy of Technical Education, Bengaluru</div>
+                </div>
+                <div class="metric-unit">
+                    <div class="metric-val" id="val_weeks">12 Weeks</div>
+                    <div class="metric-lbl" data-trn="m_duration">Course Duration</div>
+                </div>
+                <div class="metric-unit">
+                    <div class="metric-val" id="val_hours">50 Hours</div>
+                    <div class="metric-lbl" data-trn="m_footprint">Lecture Footprint</div>
+                </div>
+                <div class="metric-unit">
+                    <div class="metric-val" data-trn="val_lvl">Advanced</div>
+                    <div class="metric-lbl" data-trn="m_level">Target Level</div>
+                </div>
+            </div> -->
+        </div>
+    </header>
+
+    <div class="container my-5 pt-2">
+        <div class="row g-5">
+    
+            <!-- MAIN COLUMN: Expanded Professional Profile -->
+            <div class="col-lg-8">
+                <span class="block-label" data-trn="lbl_syllabus">Professional Profile & Technical Core</span>
+    
+                <div class="accordion" id="mathAccordion">
+    
+                    <!-- Section 01: Academic Identity -->
+                    <div class="accordion-item mb-4 shadow-sm border-1">
+                        <h2 class="accordion-header">
+                            <div class="accordion-button bg-white text-dark shadow-none py-3" style="cursor: default;">
+                                <span class="mod-tag">Profile 01</span>
+                                <span class="fw-bold">M.Tech Data Science Scholar</span>
+                            </div>
+                        </h2>
+                        <div id="m1" class="accordion-collapse show">
+                            <div class="accordion-body border-top">
+                                <p class="text-secondary mb-3">I am currently pursuing my <strong>Master of Technology in
+                                        Data Science</strong>. My academic journey is defined by a rigorous exploration of
+                                    high-dimensional data analytics and the development of scalable machine learning
+                                    frameworks.</p>
+                                <p class="text-secondary mb-3">I specialize in bridging the gap between complex mathematical
+                                    abstractions and production-ready code, ensuring that every model I build is grounded in
+                                    solid theoretical principles.</p>
+    
+                                <div class="info-panel relation-panel">
+                                    <strong style="color: var(--iisc-navy);">Current Research:</strong>
+                                    <span>Focusing on algorithmic optimization and statistical inference to improve model
+                                        interpretability in deep learning systems.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Section 02: Mathematical Expertise -->
+                    <div class="accordion-item mb-4 shadow-sm border-1">
+                        <h2 class="accordion-header">
+                            <div class="accordion-button bg-white text-dark shadow-none py-3" style="cursor: default;">
+                                <span class="mod-tag">Profile 02</span>
+                                <span class="fw-bold">Foundations of Computational Mathematics</span>
+                            </div>
+                        </h2>
+                        <div id="m2" class="accordion-collapse show">
+                            <div class="accordion-body border-top">
+                                <p class="text-secondary mb-3">My work is rooted in a deep understanding of <strong>Linear
+                                        Algebra and Multivariate Calculus</strong>. I leverage spectral theory and matrix
+                                    decomposition (SVD, PCA) to handle large-scale feature extraction and data compression.
+                                </p>
+    
+                                <div class="info-panel practical-panel">
+                                    <strong style="color: #16a34a;">Technical Rigor:</strong>
+                                    <span>Applied expertise in Optimization Theory (Gradient Descent variants) and
+                                        Probabilistic Graphical Models to ensure neural network stability.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Section 03: ML/DL Development -->
+                    <div class="accordion-item mb-4 shadow-sm border-1">
+                        <h2 class="accordion-header">
+                            <div class="accordion-button bg-white text-dark shadow-none py-3" style="cursor: default;">
+                                <span class="mod-tag">Profile 03</span>
+                                <span class="fw-bold">Advanced Machine Learning & AI</span>
+                            </div>
+                        </h2>
+                        <div id="m3" class="accordion-collapse show">
+                            <div class="accordion-body border-top">
+                                <p class="text-secondary mb-3">Proficient in architecting end-to-end ML pipelines. My focus
+                                    ranges from exploratory data analysis (EDA) to the deployment of Transformer-based
+                                    architectures and Computer Vision models.</p>
+    
+                                <div class="info-panel relation-panel">
+                                    <strong style="color: var(--iisc-navy);">Applied Skills:</strong>
+                                    <span>Developing custom deep learning workflows using PyTorch and TensorFlow, with an
+                                        emphasis on reproducible and ethical AI research.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Section 04: Engineering & Scalability -->
+                    <div class="accordion-item mb-4 shadow-sm border-1">
+                        <h2 class="accordion-header">
+                            <div class="accordion-button bg-white text-dark shadow-none py-3" style="cursor: default;">
+                                <span class="mod-tag">Profile 04</span>
+                                <span class="fw-bold">Data Engineering & High-Performance Computing</span>
+                            </div>
+                        </h2>
+                        <div id="m4" class="accordion-collapse show">
+                            <div class="accordion-body border-top">
+                                <p class="text-secondary mb-3">Understanding that data quality is paramount, I am skilled in
+                                    <strong>Data Engineering</strong> practices. I work with SQL and NoSQL environments to
+                                    ensure data integrity and high availability for large-scale analytical tasks.</p>
+    
+                                <div class="info-panel practical-panel">
+                                    <strong style="color: #16a34a;">Development Stack:</strong>
+                                    <span>Experienced in Python, C++, and SQL, building robust backend structures for
+                                        data-intensive applications.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <!-- SIDEBAR: Personal Goals & Reference -->
+            <div class="col-lg-4">
+    
+                <span class="block-label">Career Objectives</span>
+                <div class="sidebar-box shadow-sm mb-4">
+                    <div class="co-item">
+                        <i class="bi bi-circle-fill co-dot"></i>
+                        <span><b>Goal 01:</b> Build scalable AI systems that solve real-world industrial challenges.</span>
+                    </div>
+                    <div class="co-item">
+                        <i class="bi bi-circle-fill co-dot"></i>
+                        <span><b>Goal 02:</b> Translate complex theoretical abstractions into production-grade code.</span>
+                    </div>
+                    <div class="co-item">
+                        <i class="bi bi-circle-fill co-dot"></i>
+                        <span><b>Goal 03:</b> Foster a culture of ethical and mathematically rigorous Data Science.</span>
+                    </div>
+                </div>
+    
+                <span class="block-label">Personal Philosophy</span>
+                <div class="sidebar-box shadow-sm mb-4"
+                    style="border-left: 4px solid var(--iisc-navy); border-radius: 0 4px 4px 0;">
+                    <p class="small fw-bold text-dark mb-2">Practical-First Methodology:</p>
+                    <p class="small text-secondary mb-0">I believe mathematical theory is best validated through
+                        programmatic execution. My approach combines <b>academic precision</b> with <b>industry-standard
+                            engineering</b>.</p>
+                </div>
+    
+                <span class="block-label">Technical Nomenclature</span>
+                <div class="sidebar-box shadow-sm">
+                    <div class="nomenclature-row"><b>SVD</b> <span>Singular Value Decomposition</span></div>
+                    <div class="nomenclature-row"><b>NLP</b> <span>Natural Language Processing</span></div>
+                    <div class="nomenclature-row"><b>CV</b> <span>Computer Vision</span></div>
+                    <div class="nomenclature-row"><b>MLE</b> <span>Maximum Likelihood Estimation</span></div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <!-- Left Side: Copyright & Name -->
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <p class="mb-0">
+                        &copy; <span id="year"></span>
+                        <span style="letter-spacing: -0.01em;">B S Shreesha</span>
+                        <span class="d-none d-sm-inline">| Portfolio</span>
+                    </p>
+                </div>
+    
+                <!-- Right Side: Navigation & Socials -->
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="about.html" class="footer-link">About</a>
+                    <a href="https://linkedin.com//in/bsshreesha" target="_blank" class="footer-link" title="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/bsshreesha" target="_blank" class="footer-link" title="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="mailto:bsshreesha0511@gmail.com" class="footer-link" title="Email">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./Assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./Assets/js/theme.js"></script>
+
 </body>
 
 </html>

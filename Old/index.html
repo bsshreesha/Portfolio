@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="B S Shreesha - Data Science & AI Researcher. Graduate student exploring Data Science, Mathematics, and Artificial Intelligence.">
+    <meta name="keywords"
+        content="B S Shreesha, Data Science, AI, Machine Learning, Deep Learning, Portfolio, Researcher, Faculty">
+    <meta name="author" content="B S Shreesha">
+    <meta property="og:title" content="B S Shreesha | Data Science & AI Researcher">
+    <meta property="og:description" content="Portfolio of B S Shreesha - Data Science & AI Researcher">
+    <meta property="og:type" content="website">
+    <title>B S Shreesha | Data Science & AI Researcher</title>
+    <link href="./Assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./Assets/css/styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./Assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicon-16x16.png">
+    <link rel="manifest" href="./Assets/img/site.webmanifest">
+    <script>
+        (function () {
+            const theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div>
+                <img src="./Assets/img/BSShreesha.jpg" alt="B S Shreesha" class="profile-img" loading="lazy">
+                <h1 class="name-title">B S Shreesha</h1>
+                <div class="job-title">Data Science & AI Researcher</div>
+                <ul class="nav-menu mt-4">
+                    <li class="nav-item"><a href="/index.html" class="nav-link active" data-page="home"><i
+                                class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="/about.html" class="nav-link" data-page="about"><i class="fas fa-user"></i>
+                            About</a></li>
+                    <li class="nav-item"><a href="/experience.html" class="nav-link" data-page="experience"><i
+                                class="fas fa-briefcase"></i> Experience</a></li>
+                    <li class="nav-item"><a href="/projects.html" class="nav-link" data-page="projects"><i
+                                class="fas fa-code-branch"></i> Projects</a></li>
+                    <li class="nav-item"><a href="/teaching.html" class="nav-link" data-page="teaching"><i
+                                class="fas fa-chalkboard-teacher"></i> Teaching</a></li>
+                    <li class="nav-item"><a href="/certifications.html" class="nav-link" data-page="certifications"><i
+                                class="fas fa-certificate"></i> Certifications</a></li>
+                    <li class="nav-item"><a href="/skills.html" class="nav-link" data-page="skills"><i
+                                class="fas fa-layer-group"></i> Skills</a></li>
+                    <li class="nav-item"><a href="/contact.html" class="nav-link" data-page="contact"><i
+                                class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+                <a href="/resume.html" class="btn-resume"><i class="fas fa-file-alt me-2"></i> View
+                    Resume</a>
+            </div>
+            <div>
+                <div class="social-links mb-3">
+                    <a href="https://github.com/bsshreesha" target="_blank" rel="noopener noreferrer"
+                        class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/bsshreesha/" target="_blank" rel="noopener noreferrer"
+                        class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <button id="theme-toggle-btn" class="theme-toggle ms-auto" aria-label="Toggle theme"><i
+                            class="fas fa-sun" id="theme-icon"></i></button>
+                </div>
+                <div class="small text-center" style="color: var(--text-secondary); font-size: 0.8rem;">&copy; <span
+                        id="year"></span> B S Shreesha</div>
+            </div>
+        </aside>
+
+    <main class="main-content" id="main-content">
+        <div class="page-content hero-section">
+            <div>
+                <div class="status-badge">
+                    <span class="dot"></span>
+                    <span>Open to Opportunities</span>
+                </div>
+                <h1 class="hero-title">Hello, I'm Shreesha.</h1>
+                <p class="hero-subtitle">
+                    A Graduate Student exploring the depths of
+                    <span class="highlight">Data Science</span>,
+                    <span class="highlight">Mathematics</span>, and
+                    <span class="highlight">Artificial Intelligence</span>.
+                </p>
+                <div class="hero-buttons">
+                    <a href="/projects.html" class="btn-primary-custom" data-page="projects">
+                        <i class="fas fa-code-branch"></i> View My Work
+                    </a>
+                    <a href="/contact.html" class="btn-outline-custom" data-page="contact">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <!-- Drop-up Menu -->
+        <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+            <a href="/projects.html" class="menu-item" data-page="projects"><i class="fas fa-code-branch"></i> Projects</a>
+            <a href="/experience.html" class="menu-item" data-page="experience"><i class="fas fa-briefcase"></i>
+                Experience</a>
+            <a href="/teaching.html" class="menu-item" data-page="teaching"><i class="fas fa-chalkboard-teacher"></i>
+                Teaching</a>
+            <a href="/certifications.html" class="menu-item" data-page="certifications"><i class="fas fa-certificate"></i>
+                Certifications</a>
+            <a href="/skills.html" class="menu-item" data-page="skills"><i class="fas fa-layer-group"></i> Skills</a>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="bottom-nav">
+            <a href="/" class="bottom-nav-link active" data-page="home"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="/about.html" class="bottom-nav-link" data-page="about"><i class="fas fa-user"></i><span>About</span></a>
+            <a href="/contact.html" class="bottom-nav-link" data-page="contact"><i
+                    class="fas fa-envelope"></i><span>Contact</span></a>
+            <a href="/resume.html" class="bottom-nav-link"><i
+                    class="fas fa-file-alt"></i><span>CV</span></a>
+            <button id="mobile-menu-btn" class="nav-toggle-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+                <span>Menu</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="./Assets/js/script.js"></script>
+</body>
+
+</html>

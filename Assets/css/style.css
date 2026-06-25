@@ -1,0 +1,1379 @@
+/* ================================================================
+           GLOBAL RESET & BOX-SIZING FIX
+           ================================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --iisc-navy: #0f172a;
+    --iisc-slate: #334155;
+    --iisc-muted: #64748b;
+    --iisc-border: #cbd5e1;
+    --iisc-bg-light: #f8fafc;
+    --iisc-accent: #2563eb;
+}
+
+/* ================================================================
+           DARK MODE VARIABLES
+           ================================================================ */
+[data-theme="dark"] {
+    --iisc-navy: #f1f5f9;
+    --iisc-slate: #cbd5e1;
+    --iisc-muted: #94a3b8;
+    --iisc-border: #334155;
+    --iisc-bg-light: #1e293b;
+    --iisc-accent: #60a5fa;
+}
+
+
+html,
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #ffffff;
+    padding-top: 35px !important;
+    color: var(--iisc-slate);
+    letter-spacing: -0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+[data-theme="dark"] body {
+    background-color: #0f172a;
+    color: var(--iisc-slate);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-left: 1px solid var(--iisc-border);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #475569;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #ffffff;
+    color: var(--iisc-slate);
+    letter-spacing: -0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================================================
+           NAVBAR - Fixed for no overflow
+           ================================================================ */
+.iisc-navbar,
+.navbar.iisc-navbar {
+    position: fixed !important;
+    /* Forces the element to stay in place relative to the viewport */
+    top: 0 !important;
+    /* Anchors it tightly to the top edge */
+    left: 0 !important;
+    /* Stretches it to the left edge */
+    right: 0 !important;
+    /* Stretches it to the right edge */
+    z-index: 1030 !important;
+    /* Keeps the navbar layered cleanly above standard layout elements (Bootstrap 5 default for fixed-top) */
+
+    background-color: #ffffff !important;
+    border-bottom: 1px solid var(--iisc-border) !important;
+    padding: 0.75rem 0 !important;
+    transition: border-color 0.15s ease, background-color 0.3s ease;
+    /* Included background-color transition to sync with your theme toggles */
+    height: 67px !important;
+    min-height: 67px !important;
+    max-height: 67px !important;
+    box-sizing: border-box !important;
+
+    /* Override Bootstrap navbar variables */
+    --bs-navbar-padding-y: 0.75rem;
+    --bs-navbar-padding-x: 0;
+}
+
+/* Hide navbar border when offcanvas is open */
+.iisc-navbar.offcanvas-active,
+.navbar.iisc-navbar.offcanvas-active {
+    border-bottom-color: transparent !important;
+}
+
+[data-theme="dark"] .iisc-navbar.offcanvas-active,
+[data-theme="dark"] .navbar.iisc-navbar.offcanvas-active {
+    border-bottom-color: transparent !important;
+}
+
+.iisc-nav-logo-placeholder {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--iisc-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--iisc-navy);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.brand-main {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--iisc-navy);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.iisc-navbar .navbar-nav {
+    gap: 0 !important;
+    ;
+}
+
+.iisc-navbar .navbar-nav .nav-item {
+    white-space: nowrap;
+}
+
+.iisc-navbar .navbar-nav .nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--iisc-slate) !important;
+    /* Reduce horizontal padding from 1rem to 0.75rem to fix the gap */
+    padding: 0.5rem 0.75rem !important;
+    transition: color 0.15s ease;
+    display: flex;
+    align-items: center;
+}
+
+.iisc-navbar .navbar-nav .nav-link:hover,
+.iisc-navbar .navbar-nav .nav-link.active {
+    color: var(--iisc-navy) !important;
+    font-weight: 600;
+}
+
+.iisc-navbar .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.4em;
+    /* Controlled spacing between text and arrow */
+    vertical-align: 0.2em;
+    content: "";
+    border-top: 0.35em solid;
+    border-right: 0.35em solid transparent;
+    border-bottom: 0;
+    border-left: 0.35em solid transparent;
+    color: currentColor;
+    /* Matches the text color */
+    opacity: 0.8;
+    /* This makes the rotation smooth */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Rotate the icon 180 degrees when the menu is open */
+.iisc-navbar .dropdown-toggle.show::after {
+    transform: rotate(180deg);
+}
+
+/* Remove default Bootstrap dropdown arrow margin for precision */
+.dropdown-toggle::after {
+    margin-left: 6px !important;
+}
+
+.iisc-navbar .dropdown-menu {
+    background-color: #ffffff;
+    border: 1px solid var(--iisc-border) !important;
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    position: absolute;
+}
+
+.dropdown-menu-item {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    clear: both;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--iisc-slate);
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    border: none;
+    background: none;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dropdown-menu-item:hover {
+    background-color: var(--iisc-bg-light);
+    color: var(--iisc-navy);
+}
+
+.nav-utility-cluster {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.utility-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--iisc-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    white-space: nowrap;
+}
+
+.utility-link:hover {
+    color: var(--iisc-navy);
+}
+
+.utility-lang {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.fs-xs {
+    font-size: 0.65rem;
+}
+
+.utility-theme-toggle {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--iisc-border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--iisc-slate);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.utility-theme-toggle:hover {
+    background-color: var(--iisc-bg-light);
+    color: var(--iisc-navy);
+}
+
+/* Mobile Theme Toggle Styling */
+.utility-theme-toggle-mobile {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    border-color: var(--iisc-border);
+}
+
+/* Ensure the pill looks active when in dark mode (optional styling) */
+[data-theme="dark"] .utility-theme-toggle-mobile {
+    background-color: #334155;
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-iisc-contact {
+    font-size: 0.9rem;
+    font-weight: 600;
+    background-color: var(--iisc-navy);
+    color: #ffffff !important;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+    border: 1px solid var(--iisc-navy);
+    white-space: nowrap;
+}
+
+.btn-iisc-contact:hover {
+    background-color: #1e293b;
+    border-color: #1e293b;
+}
+
+.btn-hamburger-menu {
+    border: 1px solid var(--iisc-border) !important;
+    border-radius: 12px;
+    padding: 0.5rem 0.75rem;
+    background-color: #ffffff;
+    color: var(--iisc-navy);
+    transition: background-color 0.15s ease;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-hamburger-menu:hover {
+    background-color: var(--iisc-bg-light);
+}
+
+/* ================================================================
+           MOBILE OFFCANVAS
+           ================================================================ */
+.iisc-offcanvas {
+    width: 300px !important;
+    border-left: 1px solid var(--iisc-border) !important;
+    background-color: #ffffff !important;
+}
+
+.iisc-offcanvas .offcanvas-header {
+    border-bottom: 1px solid var(--iisc-border) !important;
+    padding: 0.75rem 1.25rem !important;
+    height: 67px !important;
+    min-height: 67px !important;
+    max-height: 67px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+}
+
+[data-theme="dark"] .iisc-offcanvas .offcanvas-header {
+    border-bottom-color: #334155 !important;
+}
+
+.offcanvas-label-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--iisc-muted);
+}
+
+.iisc-offcanvas .offcanvas-body {
+    padding: 1rem 0;
+}
+
+.mobile-menu-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--iisc-navy);
+    text-decoration: none;
+    border: none;
+    background: none;
+    text-align: left;
+    transition: background-color 0.1s ease;
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:focus {
+    background-color: var(--iisc-bg-light);
+    color: var(--iisc-navy);
+}
+
+.mobile-sub-accordion .accordion-item {
+    border: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.mobile-sub-accordion .accordion-button {
+    padding: 1rem 1.5rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    color: var(--iisc-navy) !important;
+    background-color: #ffffff !important;
+    border: none !important;
+}
+
+.mobile-sub-accordion .accordion-button::after {
+    font-family: "bootstrap-icons";
+    content: "\f282";
+    background: none;
+    font-size: 0.85rem;
+    color: var(--iisc-muted);
+    transform: none !important;
+    transition: transform 0.2s ease;
+}
+
+.mobile-sub-accordion .accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg) !important;
+}
+
+.mobile-sub-list {
+    list-style: none;
+    padding: 0 0 0 1rem;
+    margin: 0;
+    background-color: var(--iisc-bg-light);
+}
+
+.mobile-sub-item a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    color: var(--iisc-slate);
+    text-decoration: none;
+}
+
+.mobile-drawer-action-container {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-top: 1rem;
+}
+
+.btn-mobile-contact {
+    display: block;
+    width: 100%;
+    background-color: var(--iisc-navy);
+    color: #ffffff !important;
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.mobile-external-links {
+    padding: 1.25rem 1.5rem;
+}
+
+.mobile-ext-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.95rem;
+    color: var(--iisc-slate);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+}
+
+.mobile-lang-section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--iisc-muted);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.mobile-lang-pill-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.lang-pill {
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 50px;
+    border: 1px solid var(--iisc-border);
+    color: var(--iisc-slate);
+    text-decoration: none;
+    background-color: #ffffff;
+    transition: all 0.1s ease;
+    cursor: pointer;
+}
+
+.lang-pill.active {
+    background-color: #eff6ff;
+    border-color: var(--iisc-accent);
+    color: var(--iisc-accent);
+    font-weight: 600;
+}
+
+
+/* ================================================================
+           MOBILE OFFCANVAS - FINAL NO-GAP FIX
+           ================================================================ */
+/* Force offcanvas to be fixed and cover from top edge */
+.offcanvas.offcanvas-end.iisc-offcanvas {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-left: 1px solid var(--iisc-border) !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-right: none !important;
+    transform: translateX(100%);
+    z-index: 1060 !important;
+    background-color: #ffffff;
+    /* Override any Bootstrap inline styles */
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Force offcanvas to override Bootstrap's dynamic positioning */
+.offcanvas.offcanvas-end.iisc-offcanvas.show,
+.offcanvas.offcanvas-end.iisc-offcanvas.showing {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    transform: translateX(0) !important;
+}
+
+[data-theme="dark"] .offcanvas.offcanvas-end.iisc-offcanvas {
+    background-color: #1e293b;
+    border-left-color: #334155 !important;
+}
+
+.offcanvas.offcanvas-end.iisc-offcanvas.showing,
+.offcanvas.offcanvas-end.iisc-offcanvas.show {
+    transform: translateX(0) !important;
+}
+
+/* Navbar below offcanvas */
+.iisc-navbar {
+    z-index: 1020;
+}
+
+/* Backdrop */
+.offcanvas-backdrop.show {
+    z-index: 1050 !important;
+}
+
+/* Body lock */
+body.offcanvas-open,
+body.modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+}
+
+/* iOS */
+@supports (-webkit-touch-callout: none) {
+    .offcanvas.offcanvas-end.iisc-offcanvas {
+        height: -webkit-fill-available !important;
+        max-height: -webkit-fill-available !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Remove any default Bootstrap margins that cause gaps */
+.offcanvas.offcanvas-end.iisc-offcanvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    transform: translateX(100%);
+}
+
+.offcanvas.offcanvas-end.iisc-offcanvas.show {
+    transform: translateX(0);
+}
+
+/* Ensure body doesn't shift and create visual artifacts */
+body.offcanvas-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+}
+
+/* Fix for iOS Safari and other mobile browsers */
+@supports (-webkit-touch-callout: none) {
+    .offcanvas.offcanvas-end.iisc-offcanvas {
+        height: -webkit-fill-available !important;
+    }
+}
+
+
+
+/* ================================================================
+           HERO SECTION - Fixed responsive typography
+           ================================================================ */
+.iisc-hero {
+    background-color: #ffffff;
+    padding: 2rem 0 1rem 0;
+    border-bottom: 1px solid var(--iisc-border);
+}
+
+.course-code {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--iisc-accent);
+    margin-bottom: 0.75rem;
+}
+
+.course-title {
+    font-weight: 800;
+    font-size: clamp(1.75rem, 5vw, 2.85rem);
+    letter-spacing: -0.035em;
+    color: var(--iisc-navy);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.course-desc {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--iisc-slate);
+    max-width: 850px;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.metrics-grid {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--iisc-border);
+    padding-top: 2rem;
+    margin-top: 3rem;
+    align-items: stretch;
+}
+
+.metric-unit {
+    flex: 1;
+    min-width: 140px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 1px solid var(--iisc-border);
+}
+
+.metric-unit:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+.metric-val {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    color: var(--iisc-navy);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.metric-lbl {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--iisc-muted);
+    margin-top: 0.25rem;
+}
+
+.btn-syllabus {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--iisc-border);
+    background-color: #ffffff;
+    color: var(--iisc-navy);
+    padding: 0.65rem 1.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.1s ease;
+}
+
+.btn-syllabus:hover {
+    background-color: var(--iisc-bg-light);
+    border-color: #94a3b8;
+}
+
+/* ================================================================
+           CONTENT LAYOUT
+           ================================================================ */
+.block-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--iisc-muted);
+    margin-bottom: 1.5rem;
+}
+
+.accordion-item {
+    border: 1px solid var(--iisc-border) !important;
+    border-radius: 4px !important;
+    margin-bottom: 1.25rem;
+    background-color: #ffffff !important;
+    overflow: hidden;
+}
+
+.accordion-button {
+    padding: 1.5rem;
+    font-weight: 700;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: var(--iisc-navy) !important;
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    border-bottom: 1px solid var(--iisc-border) !important;
+}
+
+.mod-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--iisc-accent);
+    background-color: #eff6ff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 1rem;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+.accordion-body {
+    padding: 2rem 1.5rem;
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.info-panel {
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--iisc-border);
+}
+
+.relation-panel {
+    background-color: #fafafa;
+    border-left: 4px solid var(--iisc-navy);
+}
+
+.practical-panel {
+    background-color: #fcfdfd;
+    border-left: 4px solid #16a34a;
+    border-color: var(--iisc-border) var(--iisc-border) var(--iisc-border) #16a34a;
+}
+
+.sidebar-box {
+    background-color: #ffffff;
+    border: 1px solid var(--iisc-border);
+    border-radius: 4px;
+    padding: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.co-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.co-item:last-child {
+    margin-bottom: 0;
+}
+
+.co-dot {
+    color: var(--iisc-accent);
+    font-size: 0.5rem;
+    margin-top: 0.4rem;
+    margin-right: 0.85rem;
+    flex-shrink: 0;
+}
+
+.nomenclature-row {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+}
+
+.nomenclature-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.nomenclature-row b {
+    display: inline-block;
+    width: 50px;
+    color: var(--iisc-navy);
+    flex-shrink: 0;
+}
+
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid var(--iisc-border);
+    padding: 1.25rem 0;
+    font-size: 0.8rem;
+    color: var(--iisc-muted);
+    margin-top: 5rem;
+}
+
+.footer-link {
+    color: var(--iisc-muted);
+    text-decoration: none;
+    margin-left: 1.25rem;
+    transition: color 0.1s ease;
+    font-size: 0.8rem;
+}
+
+.footer-link:hover {
+    color: var(--iisc-navy);
+}
+
+/* ================================================================
+           RESPONSIVE BREAKPOINTS
+           ================================================================ */
+@media (max-width: 1399.98px) {
+    .iisc-navbar .navbar-nav .nav-link {
+        padding: 0.5rem 0.65rem !important;
+        font-size: 0.9rem;
+    }
+
+    .nav-utility-cluster {
+        gap: 0.75rem;
+    }
+
+    .utility-link,
+    .utility-lang {
+        margin-right: 0.5rem !important;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .metrics-grid {
+        align-items: stretch;
+    }
+
+    .metric-unit {
+        border-left: 1px solid var(--iisc-border);
+        padding-left: 1rem;
+        padding-right: 1rem;
+        flex: 1 1 45%;
+        min-width: unset;
+    }
+
+    .metric-unit:nth-child(odd) {
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .metric-unit:nth-child(even) {
+        border-left: 1px solid var(--iisc-border);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .iisc-hero {
+        padding: 2rem 0 2.5rem 0;
+    }
+
+    .metric-unit {
+        flex: 1 1 100%;
+        border-left: none !important;
+        padding-left: 0 !important;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--iisc-border);
+        margin-bottom: 1rem;
+    }
+
+    .metric-unit:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .metrics-grid {
+        flex-direction: column;
+    }
+
+    .accordion-button {
+        padding: 1.25rem;
+    }
+
+    .accordion-body {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .sidebar-box {
+        padding: 1.25rem;
+    }
+
+    footer {
+        padding: 2rem 0;
+        margin-top: 4rem;
+    }
+
+    .footer-link {
+        margin-left: 0;
+        margin-right: 1.5rem;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .brand-main {
+        font-size: 1rem;
+    }
+
+    .iisc-nav-logo-placeholder {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .btn-syllabus {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* ================================================================
+           DARK MODE OVERRIDES
+           ================================================================ */
+[data-theme="dark"] .iisc-navbar,
+[data-theme="dark"] .navbar.iisc-navbar {
+    background-color: #1e293b !important;
+    border-bottom-color: #334155 !important;
+    height: 67px !important;
+    min-height: 67px !important;
+    max-height: 67px !important;
+    box-sizing: border-box !important;
+}
+
+[data-theme="dark"] .iisc-nav-logo-placeholder {
+    border-color: #334155;
+    color: var(--iisc-navy);
+}
+
+[data-theme="dark"] .brand-main {
+    color: var(--iisc-navy);
+}
+
+[data-theme="dark"] .iisc-navbar .navbar-nav .nav-link {
+    color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .iisc-navbar .navbar-nav .nav-link:hover,
+[data-theme="dark"] .iisc-navbar .navbar-nav .nav-link.active {
+    color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: #1e293b;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .dropdown-menu-item {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .dropdown-menu-item:hover {
+    background-color: #334155;
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .utility-link {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .utility-link:hover {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .utility-lang {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .utility-theme-toggle {
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .utility-theme-toggle:hover {
+    background-color: #334155;
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .btn-hamburger-menu {
+    background-color: #1e293b;
+    border-color: #334155 !important;
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .btn-hamburger-menu:hover {
+    background-color: #334155;
+}
+
+[data-theme="dark"] .iisc-offcanvas {
+    background-color: #1e293b !important;
+    border-left-color: #334155 !important;
+}
+
+[data-theme="dark"] .iisc-offcanvas .offcanvas-header {
+    border-bottom-color: #334155 !important;
+}
+
+[data-theme="dark"] .mobile-menu-link {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .mobile-menu-link:hover,
+[data-theme="dark"] .mobile-menu-link:focus {
+    background-color: #334155;
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .mobile-sub-accordion .accordion-button {
+    color: #f1f5f9 !important;
+    background-color: #1e293b !important;
+}
+
+[data-theme="dark"] .mobile-sub-list {
+    background-color: #0f172a;
+}
+
+[data-theme="dark"] .mobile-sub-item a {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .mobile-drawer-action-container {
+    border-color: #334155;
+}
+
+[data-theme="dark"] .mobile-ext-link {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .lang-pill {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .lang-pill.active {
+    background-color: #1e3a5f;
+    border-color: var(--iisc-accent);
+    color: var(--iisc-accent);
+}
+
+[data-theme="dark"] .iisc-hero {
+    background-color: #0f172a;
+    border-bottom-color: #334155;
+}
+
+[data-theme="dark"] .course-title {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .course-desc {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .metrics-grid {
+    border-top-color: #334155;
+}
+
+[data-theme="dark"] .metric-unit {
+    border-left-color: #334155;
+}
+
+[data-theme="dark"] .metric-val {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .btn-syllabus {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .btn-syllabus:hover {
+    background-color: #334155;
+    border-color: #475569;
+}
+
+[data-theme="dark"] .accordion-item {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .accordion-button {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+    border-bottom-color: #334155 !important;
+}
+
+[data-theme="dark"] .accordion-body {
+    background-color: #1e293b;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .accordion-body .text-secondary {
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .info-panel {
+    border-color: #334155;
+}
+
+[data-theme="dark"] .relation-panel {
+    background-color: #1e293b;
+    border-left-color: #60a5fa;
+}
+
+[data-theme="dark"] .practical-panel {
+    background-color: #1e293b;
+    border-color: #334155 #334155 #334155 #4ade80;
+}
+
+[data-theme="dark"] .sidebar-box {
+    background-color: #1e293b;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .co-item {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .nomenclature-row {
+    border-bottom-color: #334155;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .nomenclature-row b {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] footer {
+    background-color: #0f172a;
+    border-top-color: #334155;
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .footer-link {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .footer-link:hover {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .btn-mobile-contact {
+    background-color: #3b82f6;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: #0f172a;
+    border-left-color: #334155;
+}
+
+[data-theme="dark"] .btn-iisc-contact {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-iisc-contact:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background-color: #475569;
+    border-color: #0f172a;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background-color: #64748b;
+}
+
+[data-theme="dark"] .sidebar-box .text-dark {
+    color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .sidebar-box .text-secondary {
+    color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .sidebar-box b,
+[data-theme="dark"] .sidebar-box strong {
+    color: #f1f5f9;
+}
+
+/* IISc Standard Typography */
+.section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--iisc-muted);
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.item-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--iisc-navy);
+}
+
+/* Static Accordion Fix */
+.accordion-static {
+    border: 1px solid var(--iisc-border) !important;
+    border-radius: 4px !important;
+    background: transparent !important;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.accordion-static .accordion-header-flat {
+    background-color: var(--iisc-bg-light);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--iisc-border);
+    display: flex;
+    align-items: center;
+}
+
+.accordion-static .accordion-body {
+    padding: 1.5rem;
+    background-color: transparent;
+}
+
+/* Remove arrow and hover effects for static look */
+.accordion-button::after {
+    display: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--iisc-bg-light);
+    box-shadow: none;
+}
+
+/* Responsive Typography for Education Items */
+.item-title {
+    font-size: clamp(1rem, 4vw, 1.2rem) !important;
+    line-height: 1.2;
+}
+
+.mod-tag-pill {
+    background: rgba(59, 130, 246, 0.08);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .mod-tag-pill {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+}
+
+/* Specializations Box */
+.spec-box {
+    background-color: var(--iisc-bg-light);
+    border-left: 4px solid var(--iisc-navy) !important;
+    border-radius: 0 4px 4px 0;
+    /* Smooth alignment aesthetic with left vertical accent */
+}
+
+/* Status Label at the bottom */
+.status-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--iisc-muted);
+}
+
+/* ================================================================
+   MOBILE OFFCANVAS ACTIVE STATES
+   ================================================================ */
+.mobile-menu-link.active {
+    background-color: var(--iisc-bg-light) !important;
+    color: var(--iisc-navy) !important;
+    font-weight: 600 !important;
+    border-left: 4px solid var(--iisc-accent) !important;
+    /* Keeps text padding balanced despite the new 4px left border */
+    padding-left: calc(1.5rem - 4px) !important;
+}
+
+/* Specific adjustment to prevent flash/jump on focus when active */
+[data-theme="dark"] .mobile-menu-link.active {
+    background-color: #334155 !important;
+    color: #f1f5f9 !important;
+}
+
+/* Monochromatic Button Logic */
+.btn-report-view {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-report-view:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Dark Mode Switch */
+[data-theme="dark"] .btn-report-view {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #fff;
+}
+
+[data-theme="dark"] .btn-report-view:hover {
+    background-color: #e2e8f0;
+}
+
+/* Modal Immersive background */
+.modal-fullscreen .modal-content {
+    background-color: #000 !important;
+}
