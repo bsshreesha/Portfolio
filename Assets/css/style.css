@@ -1377,3 +1377,63 @@ footer {
 .modal-fullscreen .modal-content {
     background-color: #000 !important;
 }
+
+/* Skill Matrix Container */
+.skill-matrix {
+    margin-top: 2rem;
+}
+
+/* Individual Skill Tag - Monochromatic & Sharp */
+.skill-tag {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--iisc-slate);
+    background-color: var(--iisc-bg-light);
+    border: 1px solid var(--iisc-border);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    /* Professional sharp corners */
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+}
+
+.skill-tag:hover {
+    background-color: var(--iisc-navy);
+    color: #ffffff !important;
+    border-color: var(--iisc-navy);
+}
+
+/* Vertical Divider for Row Alignment */
+@media (min-width: 768px) {
+    .skill-matrix .row>div:first-child {
+        border-right: 1px solid var(--iisc-border);
+    }
+}
+
+/* Night Mode Support */
+[data-theme="dark"] .skill-tag {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .skill-tag:hover {
+    background-color: #ffffff;
+    color: #000000 !important;
+}
+
+[data-theme="dark"] .border-light {
+    border-color: #334155 !important;
+}
+
+/* Custom weight for monochromatic headings */
+.fw-800 {
+    font-weight: 800;
+}
+
+@media (min-width: 768px) {
+    .border-start-md {
+        border-left: 1px solid var(--iisc-border) !important;
+        padding-left: 3rem;
+    }
+}
