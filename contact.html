@@ -192,7 +192,7 @@
             </div>
 
             <div class="mobile-drawer-action-container">
-                <a href="contact.html" class="btn-mobile-contact" data-trn="contact_us">Contact Us</a>
+                <a href="contact.html" class="btn-mobile-contact" data-trn="contact_us">Contact</a>
             </div>
 
             <div class="mobile-external-links">
@@ -236,66 +236,94 @@
             </div>
         </div>
 
-        <!-- EDUCATION SECTION (ACCORDION STYLE - NO COLLAPSE) -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <span class="section-title">Direct Inquiry</span>
+        <!-- CONTACT CHANNELS MATRIX -->
+        <div class="contact-matrix">
         
-                <!-- Formspree Integration -->
-                <!-- Note: Replace 'your_formspree_id' after you create an account at formspree.io -->
-                <div class="card border-1 shadow-sm rounded-0 bg-transparent">
-                    <div class="card-body p-4 p-md-5">
-                        <form id="contact-form" action="https://formspree.io/f/xbldpzzp" method="POST">
-                            <div class="row g-4">
-                                <!-- Name -->
-                                <div class="col-md-6">
-                                    <label class="form-label small fw-800 text-uppercase" style="letter-spacing: 0.1em;">Full
-                                        Name</label>
-                                    <input type="text" name="name" class="form-control rounded-0 border-dark shadow-none p-3"
-                                        placeholder="Shreesha B.S." required>
-                                </div>
-        
-                                <!-- Email -->
-                                <div class="col-md-6">
-                                    <label class="form-label small fw-800 text-uppercase" style="letter-spacing: 0.1em;">Email
-                                        Address</label>
-                                    <input type="email" name="email" class="form-control rounded-0 border-dark shadow-none p-3"
-                                        placeholder="email@example.com" required>
-                                </div>
-        
-                                <!-- Subject -->
-                                <div class="col-12">
-                                    <label class="form-label small fw-800 text-uppercase"
-                                        style="letter-spacing: 0.1em;">Subject</label>
-                                    <input type="text" name="subject" class="form-control rounded-0 border-dark shadow-none p-3"
-                                        placeholder="Research Collaboration / Job Opportunity" required>
-                                </div>
-        
-                                <!-- Message -->
-                                <div class="col-12">
-                                    <label class="form-label small fw-800 text-uppercase" style="letter-spacing: 0.1em;">Your
-                                        Message</label>
-                                    <textarea name="message" class="form-control rounded-0 border-dark shadow-none p-3" rows="6"
-                                        placeholder="Write your message here..." required></textarea>
-                                </div>
-        
-                                <!-- Submit Button -->
-                                <div class="col-12 text-end">
-                                    <button type="submit" id="submit-btn"
-                                        class="btn btn-dark rounded-0 px-5 py-3 fw-bold text-uppercase"
-                                        style="letter-spacing: 0.2em; font-size: 0.8rem;">
-                                        Send Message <i class="bi bi-arrow-right ms-2"></i>
-                                    </button>
-                                </div>
-                            </div>
-        
-                            <!-- Success/Error Feedback -->
-                            <div id="form-status" class="mt-4 small fw-bold text-uppercase"
-                                style="display: none; letter-spacing: 0.1em;"></div>
-                        </form>
+            <!-- Official Email -->
+            <div class="row matrix-row align-items-center g-3" onclick="location.href='mailto:bsshreesha0511@gmail.com'"
+                style="cursor: pointer; border-bottom: 1px solid var(--iisc-border); padding: 1.5rem 0;">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-envelope-at fs-4 me-3" style="color: var(--iisc-navy);"></i>
+                        <span class="fw-bold small text-uppercase"
+                            style="letter-spacing: 0.1em; color: var(--iisc-navy);">Official Email</span>
                     </div>
                 </div>
+                <div class="col-md-5">
+                    <span class="fw-600">bsshreesha0511@gmail.com</span>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <span class="status-label">Primary</span>
+                </div>
             </div>
+        
+            <!-- LinkedIn -->
+            <div class="row matrix-row align-items-center g-3"
+                onclick="window.open('https://linkedin.com/in/bsshreesha', '_blank')"
+                style="cursor: pointer; border-bottom: 1px solid var(--iisc-border); padding: 1.5rem 0;">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-linkedin fs-4 me-3" style="color: var(--iisc-navy);"></i>
+                        <span class="fw-bold small text-uppercase"
+                            style="letter-spacing: 0.1em; color: var(--iisc-navy);">LinkedIn Network</span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <span class="fw-600">linkedin.com/in/bsshreesha</span>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <span class="status-label">Networking</span>
+                </div>
+            </div>
+        
+            <!-- GitHub -->
+            <div class="row matrix-row align-items-center g-3" onclick="window.open('https://github.com/bsshreesha', '_blank')"
+                style="cursor: pointer; border-bottom: 1px solid var(--iisc-border); padding: 1.5rem 0;">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-github fs-4 me-3" style="color: var(--iisc-navy);"></i>
+                        <span class="fw-bold small text-uppercase"
+                            style="letter-spacing: 0.1em; color: var(--iisc-navy);">Technical Portfolio</span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <span class="fw-600">github.com/bsshreesha</span>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <span class="status-label">Research</span>
+                </div>
+            </div>
+        
+            <!-- Mobile -->
+            <div class="row matrix-row align-items-center g-3" onclick="location.href='tel:+910000000000'"
+                style="cursor: pointer; border-bottom: 1px solid var(--iisc-border); padding: 1.5rem 0;">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-telephone fs-4 me-3" style="color: var(--iisc-navy);"></i>
+                        <span class="fw-bold small text-uppercase"
+                            style="letter-spacing: 0.1em; color: var(--iisc-navy);">Mobile Contact</span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <span class="fw-600">+91 80736 73296</span>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <span class="status-label">Direct</span>
+                </div>
+            </div>
+        
+        </div>
+        
+        <!-- NOTE BOX -->
+        <div class="mt-5 p-4 border-start border-4"
+            style="border-color: var(--iisc-navy) !important; background-color: var(--iisc-bg-light);">
+            <p class="mb-0 small text-secondary">
+                <strong>Availability:</strong> I typically respond to academic and professional inquiries within 24-48 business
+                hours.
+                For immediate project discussions, LinkedIn messaging is preferred.
+            </p>
+        </div>
+        
         </div>
     </div>
 

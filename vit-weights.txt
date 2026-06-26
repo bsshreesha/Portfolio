@@ -1,1 +1,0 @@
-https://github.com/faustomorales/vit-keras/releases/download/dl/ViT-L_32_ViT-L_32_imagenet21k+imagenet2012.npz
