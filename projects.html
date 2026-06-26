@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>B S Shreesha | Projects</title>
+
+    <link rel="stylesheet" href="./Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Assets/css/bootstrap-icons.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./Assets/css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./Assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicon-16x16.png">
+    <link rel="manifest" href="./Assets/img/site.webmanifest">
+
+    <!-- Blocking theme script - prevents flash of wrong theme -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemDark ? 'dark' : 'light');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <base>
+</head>
+
+<body>
+    <div id="global-loader" style="
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100vw; 
+        height: 100vh; 
+        background-color: var(--iisc-bg-light); 
+        z-index: 9999; 
+        display: none !important; /* Browser hides this completely during initial HTML parsing */
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+    ">
+        <div style="width: 240px; max-width: 80%;">
+            <div class="progress"
+                style="height: 6px; background-color: var(--iisc-border); border-radius: 4px; overflow: hidden;">
+                <div id="loader-progress-bar" class="progress-bar" role="progressbar"
+                    style="width: 0%; background-color: var(--iisc-accent); transition: width 0.1s linear;"></div>
+            </div>
+            <div class="text-center mt-2"
+                style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--iisc-muted); letter-spacing: 0.05em;">
+                LOADING <span id="loader-counter">0</span>%
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar sticky-top iisc-navbar">
+        <div class="container position-relative d-flex align-items-center justify-content-between flex-nowrap">
+
+            <a class="navbar-brand d-flex align-items-center text-decoration-none me-2" href="index.html"
+                style="padding: 0; margin: 0;">
+                <div class="iisc-nav-logo-placeholder me-2">
+                    <img src="./Assets/img/BSShreesha.jpg" alt="B S Shreesha"
+                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                <div class="brand-main" data-trn="nav_title">B S Shreesha</div>
+            </a>
+
+            <ul
+                class="navbar-nav flex-row align-items-center d-none d-xl-flex position-absolute start-50 translate-middle-x">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" data-trn="menu_home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html" data-trn="menu_about">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="facultyDrop" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" data-trn="menu_experience">
+                        Experience
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="facultyDrop">
+                        <li>
+                            <a class="dropdown-menu-item text-decoration-none" href="teaching.html"
+                                data-trn="sub_teaching">Teaching</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-menu-item text-decoration-none" href="publications.html"
+                                data-trn="sub_publications">Publications</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="projects.html" data-trn="menu_projects">Projects</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="certifications.html" data-trn="menu_certifications">Certifications</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="skills.html" data-trn="menu_skills">Skills</a>
+                </li>
+            </ul>
+
+            <div class="nav-utility-cluster d-none d-xl-flex flex-shrink-0">
+                <div class="dropdown me-4">
+                    <div class="utility-lang dropdown-toggle" id="desktopLangSelector" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-globe me-1"></i><span id="currentDesktopLang">EN</span>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm"
+                        aria-labelledby="desktopLangSelector">
+                        <li><button class="dropdown-menu-item" onclick="switchLanguage('en')">English</button></li>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="utility-theme-toggle me-4">
+                    <i class="bi bi-moon"></i>
+                </div>
+                <a href="contact.html" class="btn-iisc-contact" data-trn="contact_us">Contact</a>
+            </div>
+
+            <button class="btn-hamburger-menu d-xl-none flex-shrink-0 ms-auto" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenuDrawer" aria-controls="mobileMenuDrawer">
+                <i class="bi bi-list fs-4"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end iisc-offcanvas d-xl-none" tabindex="-1" id="mobileMenuDrawer"
+        aria-labelledby="mobileMenuDrawerLabel">
+        <div class="offcanvas-header d-flex align-items-center justify-content-between">
+            <span class="offcanvas-label-text" data-trn="lbl_menu">Menu</span>
+            <button type="button" class="btn-close shadow-none text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <div class="accordion mobile-sub-accordion" id="drawerLinksAccordion">
+                <div class="accordion-item">
+                    <a href="index.html" class="mobile-menu-link" data-trn="menu_home">Home</a>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="about.html" class="mobile-menu-link" data-trn="menu_about">About</a>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#mobFacultyCollapse" data-trn="menu_experience">
+                            Experience
+                        </button>
+                    </h2>
+                    <div id="mobFacultyCollapse" class="accordion-collapse collapse"
+                        data-bs-parent="#drawerLinksAccordion">
+                        <ul class="mobile-sub-list">
+                            <li class="mobile-sub-item"><a href="teaching.html" data-trn="sub_teaching">Teaching</a>
+                            </li>
+                            <li class="mobile-sub-item"><a href="publications.html"
+                                    data-trn="sub_publications">Publications</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="projects.html" class="mobile-menu-link active" data-trn="menu_projects">Projects</a>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="certifications.html" class="mobile-menu-link"
+                        data-trn="menu_certifications">Certifications</a>
+                </div>
+
+                <div class="accordion-item">
+                    <a href="skills.html" class="mobile-menu-link" data-trn="menu_skills">Skills</a>
+                </div>
+            </div>
+
+            <div class="mobile-drawer-action-container">
+                <a href="contact.html" class="btn-mobile-contact" data-trn="contact_us">Contact</a>
+            </div>
+
+            <div class="mobile-external-links">
+                <!-- Theme Toggle Section -->
+                <span class="mobile-lang-section-label">
+                    <i class="bi bi-circle-half me-1"></i> Appearance
+                </span>
+                <div class="mobile-lang-pill-row mb-4">
+                    <!-- This pill acts as the mobile toggle -->
+                    <div class="lang-pill utility-theme-toggle-mobile" id="mobile-theme-pill">
+                        <i class="bi bi-moon me-2"></i>
+                        <span id="theme-text-mobile">Dark Mode</span>
+                    </div>
+                </div>
+
+                <!-- Language Section -->
+                <span class="mobile-lang-section-label">
+                    <i class="bi bi-globe me-1"></i> Language
+                </span>
+                <div class="mobile-lang-pill-row">
+                    <div class="lang-pill active" id="pill-en" onclick="switchLanguage('en')">English</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5 pt-2">
+        <!-- CAREER HEADER -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <span class="section-title">Projects</span>
+                <h1 class="h3 fw-800 mb-3" style="color: var(--iisc-navy); letter-spacing: -0.02em;">
+                    Academic and Research Projects
+                </h1>
+                <p class="text-secondary" style="line-height: 1.7; font-size: 1rem;">
+                    Explore a curated selection of my academic and research projects, showcasing my expertise in
+                    data science, machine learning, and software development. Each project reflects my commitment to
+                    innovation, problem-solving, and the practical application of theoretical knowledge.
+                </p>
+            </div>
+        </div>
+
+        <!-- EDUCATION SECTION (ACCORDION STYLE - NO COLLAPSE) -->
+        <div class="row">
+            <div class="col-12">
+                <span class="section-title">Projects</span>
+
+                <div class="accordion" id="mathAccordion">
+
+                    <div class="accordion-item shadow-sm border-1 mb-4">
+                        <!-- Header: Date and Project Title -->
+                        <h2 class="accordion-header">
+                            <div class="accordion-button shadow-none py-3 d-flex align-items-center gap-2"
+                                style="cursor: default; background-color: transparent !important; color: var(--iisc-navy) !important;">
+                                <span class="mod-tag-pill">2026</span>
+                                <span class="item-title fw-bold">AyurGPT: AI-Powered Study Tool for Ayurveda</span>
+                            </div>
+                        </h2>
+                    
+                        <div id="project1" class="accordion-collapse show">
+                            <div class="accordion-body border-top p-3" style="background-color: transparent;">
+                                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                                    <div class="w-100">
+                                        <!-- Institutional Context -->
+                                        <h6 class="mb-1 fw-bold" style="line-height: 1.4; color: var(--iisc-navy);">
+                                            Mini Project | JSS Academy of Technical Education (VTU)
+                                        </h6>
+                                        <p class="small mb-3" style="color: var(--iisc-muted);">
+                                            Guided by: <strong>Dr. Rekha P M</strong> (Dean Academics) & <strong>Dr. Sahana V</strong>
+                                            <br>Collaborator: Srivatsa G
+                                        </p>
+                    
+                                        <!-- Project Brief -->
+                                        <p class="mb-3" style="font-size: 0.95rem; line-height: 1.6; color: var(--iisc-slate);">
+                                            Developed a Retrieval Augmented Generation (RAG) system to simplify classical Ayurvedic texts
+                                            (Sushruta & Charaka Samhita). The tool enables semantic search and Sanskrit-to-English
+                                            conceptual learning for medical students.
+                                        </p>
+                    
+                                        <!-- Technical Stack Box -->
+                                        <div class="spec-box py-2 px-3 mb-3">
+                                            <small class="d-block" style="line-height: 1.4; color: var(--iisc-slate);">
+                                                <strong>Core Stack:</strong> Milvus (Vector DB), Transformer-based Embeddings, LLM APIs,
+                                                Django REST, React.js, EasyOCR, and gTTS.
+                                            </small>
+                                        </div>
+                    
+                                        <!-- Action Buttons (Monochromatic) -->
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <button class="btn btn-report-view rounded-pill px-4"
+                                                onclick="openReportModal('AyurGPT Presentation', './Assets/docs/AyurGPT_Presentation.pdf')">
+                                                <i class="bi bi-file-earmark-slides me-2"></i> View Presentation
+                                            </button>
+                                            <!-- <button class="btn btn-report-view-outline rounded-pill px-4"
+                                                onclick="window.open('https://github.com/bsshreesha/AyurGPT', '_blank')">
+                                                <i class="bi bi-github me-2"></i> Source Code
+                                            </button> -->
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Status Label -->
+                                    <div class="text-start text-md-end mt-1 mt-md-0 pt-2 pt-md-0 w-md-auto">
+                                        <span class="status-label" style="white-space: nowrap;">Mini Project</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item shadow-sm border-1 mb-4">
+                        <!-- Header: Date and Project Title -->
+                        <h2 class="accordion-header">
+                            <div class="accordion-button shadow-none py-3 d-flex align-items-center gap-2"
+                                style="cursor: default; background-color: transparent !important; color: var(--iisc-navy) !important;">
+                                <span class="mod-tag-pill">2025</span>
+                                <span class="item-title fw-bold">Reinforcement Enabled Physics Informed Neural Networks</span>
+                            </div>
+                        </h2>
+                    
+                        <div id="project2" class="accordion-collapse show">
+                            <div class="accordion-body border-top p-3" style="background-color: transparent;">
+                                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                                    <div class="w-100">
+                                        <!-- Institutional Context -->
+                                        <h6 class="mb-1 fw-bold" style="line-height: 1.4; color: var(--iisc-navy);">
+                                            Major Project | Jyothy Institute of Technology (VTU)
+                                        </h6>
+                                        <p class="small mb-3" style="color: var(--iisc-muted);">
+                                            Guided by: <strong>Dr. Kemparaju M C</strong> & <strong>Dr. Madhusudhan R</strong>
+                                            <br>Collaborators: Anirudh Onkar, Shreesha R, Sudhanva N Kishore
+                                        </p>
+                    
+                                        <!-- Project Brief -->
+                                        <p class="mb-3" style="font-size: 0.95rem; line-height: 1.6; color: var(--iisc-slate);">
+                                            Developed a Reinforcement Enabled Physics Informed Neural Network (PINN) to solve complex partial differential equations <strong>[Magnetohydrodynamic (MHD) equations]</strong>.
+                                            The approach integrates reinforcement learning with physics-based constraints to improve solution accuracy and generalization.
+                                        </p>
+                    
+                                        <!-- Technical Stack Box -->
+                                        <div class="spec-box py-2 px-3 mb-3">
+                                            <small class="d-block" style="line-height: 1.4; color: var(--iisc-slate);">
+                                                <strong>Core Stack:</strong> Physics Informed Neural Networks (PINNs), Reinforcement Learning, TensorFlow, and Scientific Computing Libraries.
+                                            </small>
+                                        </div>
+                    
+                                        <!-- Action Buttons (Monochromatic) -->
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <button class="btn btn-report-view rounded-pill px-4"
+                                                onclick="openReportModal('AyurGPT Presentation', './Assets/docs/AyurGPT_Presentation.pdf')">
+                                                <i class="bi bi-file-earmark-slides me-2"></i> View Presentation
+                                            </button>
+                                            <!-- <button class="btn btn-report-view-outline rounded-pill px-4"
+                                                                    onclick="window.open('https://github.com/bsshreesha/AyurGPT', '_blank')">
+                                                                    <i class="bi bi-github me-2"></i> Source Code
+                                                                </button> -->
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Status Label -->
+                                    <div class="text-start text-md-end mt-1 mt-md-0 pt-2 pt-md-0 w-md-auto">
+                                        <span class="status-label" style="white-space: nowrap;">Mini Project</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMMERSIVE CREDENTIAL VIEWER MODAL -->
+    <div class="modal fade" id="reportViewerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-black border-0 rounded-0">
+                <!-- Header stays black for maximum focus -->
+                <div class="modal-header border-bottom border-secondary py-2 px-4" style="background: #000;">
+                    <h6 class="modal-title text-white fw-bold small text-uppercase mb-0" id="modalReportTitle">
+                        <i class="bi bi-shield-check me-2"></i>Verified Credential
+                    </h6>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-0 overflow-hidden" style="background-color: #1a1a1a;">
+                    <iframe id="reportFrame" src="" frameborder="0"
+                        style="width: 100%; height: 100%; min-height: 85vh; border: none;"></iframe>
+                </div>
+
+                <!-- Footer for Professionalism -->
+                <div class="modal-footer border-top border-secondary py-2 bg-black justify-content-between px-4">
+                    <span class="small text-white-50">Authorized Professional Record</span>
+                    <span class="small text-white-50">© B S Shreesha | M.Tech Data Science</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <!-- Left Side: Copyright & Name -->
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <p class="mb-0">
+                        &copy; <span id="year"></span>
+                        <span style="letter-spacing: -0.01em;">B S Shreesha</span>
+                        <span class="d-none d-sm-inline">| Portfolio</span>
+                    </p>
+                </div>
+
+                <!-- Right Side: Navigation & Socials -->
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="about.html" class="footer-link">About</a>
+                    <a href="https://linkedin.com//in/bsshreesha" target="_blank" class="footer-link" title="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/bsshreesha" target="_blank" class="footer-link" title="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="mailto:bsshreesha0511@gmail.com" class="footer-link" title="Email">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./Assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./Assets/js/theme.js"></script>
+
+</body>
+
+</html>
