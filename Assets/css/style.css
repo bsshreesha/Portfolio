@@ -1437,3 +1437,43 @@ footer {
         padding-left: 3rem;
     }
 }
+
+/* Monochromatic Outline Button (Secondary Action) */
+.btn-report-view-outline {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-report-view-outline:hover {
+    background-color: #f8f9fa;
+    color: #000;
+    border-color: #333;
+}
+
+/* Dark Mode logic for Outline Button */
+[data-theme="dark"] .btn-report-view-outline {
+    color: #fff;
+    border-color: #fff;
+}
+
+[data-theme="dark"] .btn-report-view-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Ensure buttons don't look cramped on tiny screens */
+@media (max-width: 576px) {
+
+    .btn-report-view,
+    .btn-report-view-outline {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
+}
