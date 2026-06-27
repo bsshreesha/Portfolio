@@ -1490,7 +1490,7 @@ footer {
     padding: 6px 16px;
     border-radius: 2px;
     display: flex;
-    align-items: center;
+    align-items: right;
     transition: all 0.2s ease-in-out;
 }
 
