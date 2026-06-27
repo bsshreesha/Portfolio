@@ -1477,3 +1477,35 @@ footer {
         display: flex;
     }
 }
+
+/* Custom Professional Modal Close Button */
+.btn-modal-close {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 6px 16px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-modal-close i {
+    font-size: 0.8rem;
+    margin-top: 1px;
+}
+
+.btn-modal-close:hover {
+    background-color: #ffffff;
+    color: #000000 !important;
+    border-color: #ffffff;
+}
+
+.btn-modal-close:focus {
+    box-shadow: none;
+    outline: none;
+}
