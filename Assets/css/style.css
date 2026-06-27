@@ -836,7 +836,7 @@ body.offcanvas-open {
 footer {
     background-color: #ffffff;
     border-top: 1px solid var(--iisc-border);
-    padding: 1.25rem 0;
+    padding: 1.1rem 0;
     font-size: 0.8rem;
     color: var(--iisc-muted);
     margin-top: 5rem;
