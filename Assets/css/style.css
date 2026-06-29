@@ -1509,3 +1509,40 @@ footer {
     box-shadow: none;
     outline: none;
 }
+
+/* Sharp side viewer styling */
+.viewer-wrapper {
+    background-color: var(--iisc-bg-light);
+    border: 1px solid var(--iisc-border);
+    border-top: 4px solid var(--iisc-navy);
+    min-height: 500px;
+    border-radius: 2px;
+}
+
+.truncate-title {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Ensure the iframe background is dark (standard for PDF viewers) */
+#mainFileFrame,
+#reportFrame {
+    background-color: #525659;
+}
+
+/* Close button for immersive view */
+.btn-modal-close {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 6px 16px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}

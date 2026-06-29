@@ -232,3 +232,47 @@ function openReportModal(title, filePath) {
 document.getElementById('reportViewerModal').addEventListener('hidden.bs.modal', function () {
     document.getElementById('reportFrame').src = "";
 });
+
+/**
+ * openReportModal - Standardized for all devices
+ */
+function openReportModal(title, filePath) {
+    // If screen width is less than 992px (Bootstrap 'lg' breakpoint)
+    const isMobile = window.innerWidth < 992;
+
+    if (isMobile) {
+        // MOBILE LOGIC: Trigger the Fullscreen Modal
+        const reportModal = new bootstrap.Modal(document.getElementById('reportViewerModal'));
+        document.getElementById('modalReportTitle').innerHTML = `<i class="bi bi-shield-check me-2"></i> ${title}`;
+        document.getElementById('reportFrame').src = filePath;
+        reportModal.show();
+    } else {
+        // LAPTOP LOGIC: Load into the side-by-side viewer
+        document.getElementById('viewerPlaceholder').classList.add('d-none');
+        const activeViewer = document.getElementById('activeViewer');
+        activeViewer.classList.remove('d-none');
+        
+        document.getElementById('viewerTitle').textContent = title;
+        document.getElementById('mainFileFrame').src = filePath;
+
+        // Optional: Scroll to top of viewer so it's visible if user is scrolled down
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+/**
+ * closeViewer - Resets the Laptop side panel
+ */
+function closeViewer() {
+    document.getElementById('viewerPlaceholder').classList.remove('d-none');
+    document.getElementById('activeViewer').classList.add('d-none');
+    document.getElementById('mainFileFrame').src = "";
+}
+
+/**
+ * Event Listener for Modal Close
+ * Clears mobile iframe src to stop background processing
+ */
+document.getElementById('reportViewerModal').addEventListener('hidden.bs.modal', function () {
+    document.getElementById('reportFrame').src = "";
+});

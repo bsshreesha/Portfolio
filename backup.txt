@@ -1,0 +1,271 @@
+<div class="row">
+        <div class="col-6">
+            <div class="accordion" id="teachingAccordion">
+                <!-- NPTEL Item 01: Foundations of Deep Learning -->
+                <div class="accordion-item shadow-sm mb-4">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button shadow-none py-3 d-flex align-items-center gap-2"
+                            style="cursor: default; background-color: transparent !important; color: var(--iisc-navy) !important;">
+                            <span class="item-title fw-bold">Foundations of Deep Learning</span>
+                            <span class="mod-tag-pill">12 Weeks</span>
+                        </div>
+                    </h2>
+                    <div id="c1" class="accordion-collapse show">
+                        <div class="accordion-body border-top p-3" style="background-color: transparent;">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                                <div class="w-100">
+                                    <h6 class="mb-1 fw-bold" onclick="window.open('https://swayam.gov.in/', '_blank')"
+                                        style="cursor: pointer; line-height: 1.4; color: var(--iisc-accent);">
+                                        NPTEL | Swayam
+                                    </h6>
+                                    <p class="small mb-2" style="color: var(--iisc-muted);">Conducted by Indian Institute of Science, Bengaluru
+                                        (IISc)</p>
+                
+                                    <div class="spec-box py-2 px-3 mb-3">
+                                        <small class="d-block" style="line-height: 1.4; color: var(--iisc-slate);">
+                                            <strong>Key Learnings:</strong> Multi-layer Perceptrons, Backpropagation rigors,
+                                            Optimization (SGD, Adam), CNN Architectures, and Sequence Modeling (RNN and LSTM).
+                                        </small>
+                                    </div>
+                
+                                    <!-- VIEW CERTIFICATE BUTTON -->
+                                    <div class="d-flex flex-wrap gap-2 mt-3">
+                                        <button class="btn btn-report-view rounded-pill px-2"
+                                            onclick="openReportModal('Foundations of Deep Learning', './Assets/certificates/Foundations_of_Deep_Learning.pdf')">
+                                            <i class="bi bi-patch-check-fill me-1"></i> View Certificate
+                                        </button>
+
+                                        <!-- View Materials (Secondary/Outline) -->
+                                        <button class="btn btn-report-view-outline rounded-pill px-3"
+                                            onclick="window.open('https://github.com/bsshreesha/Foundations-of-Deep-Learning-NPTEL', '_blank')">
+                                            <i class="bi bi-github me-1"></i> View Materials
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="text-start text-md-end mt-1 mt-md-0 pt-2 pt-md-0 w-md-auto">
+                                    <span class="status-label" style="white-space: nowrap;">Elite</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NPTEL Item 02: Python for Data Science -->
+                <div class="accordion-item shadow-sm mb-4">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button shadow-none py-3 d-flex align-items-center gap-2"
+                            style="cursor: default; background-color: transparent !important; color: var(--iisc-navy) !important;">
+                            <span class="item-title fw-bold">Python for Data Science</span>
+                            <span class="mod-tag-pill">4 Weeks</span>
+                        </div>
+                    </h2>
+                    <div id="c2" class="accordion-collapse show">
+                        <div class="accordion-body border-top p-3" style="background-color: transparent;">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                                <div class="w-100">
+                                    <h6 class="mb-1 fw-bold" onclick="window.open('https://nptel.ac.in/', '_blank')"
+                                        style="cursor: pointer; line-height: 1.4; color: var(--iisc-accent);">
+                                        NPTEL | Swayam
+                                    </h6>
+                                    <p class="small mb-2" style="color: var(--iisc-muted);">Conducted by Indian Institute of Technology,
+                                        Madras
+                                        (IIT Madras)</p>
+                
+                                    <div class="spec-box py-2 px-3 mb-3">
+                                        <small class="d-block" style="line-height: 1.4; color: var(--iisc-slate);">
+                                            <strong>Key Learnings:</strong> Foundational concepts of Python for Data Science, Feature Selection, Feature Engineering.
+                                        </small>
+                                    </div>
+                
+                                    <!-- VIEW CERTIFICATE BUTTON -->
+                                    <!-- Action Buttons Container -->
+                                    <div class="d-flex flex-wrap gap-2 mt-3">
+                                        <!-- View Certificate (Primary) -->
+                                        <button class="btn btn-report-view rounded-pill px-3"
+                                            onclick="openReportModal('Python for Data Science', './Assets/certificates/Python_for_Data_Science.pdf')">
+                                            <i class="bi bi-patch-check-fill me-1"></i> View Certificate
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="text-start text-md-end mt-1 mt-md-0 pt-2 pt-md-0 w-md-auto">
+                                    <span class="status-label" style="white-space: nowrap;">Elite+Silver</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saylor Academy Item 03: Advanced Operating Systems -->
+                <div class="accordion-item shadow-sm mb-4">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button shadow-none py-3 d-flex align-items-center gap-2"
+                            style="cursor: default; background-color: transparent !important; color: var(--iisc-navy) !important;">
+                            <span class="item-title fw-bold">Advanced Operating Systems</span>
+                            <span class="mod-tag-pill">120 Hours</span>
+                        </div>
+                    </h2>
+                    <div id="c2" class="accordion-collapse show">
+                        <div class="accordion-body border-top p-3" style="background-color: transparent;">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                                <div class="w-100">
+                                    <h6 class="mb-1 fw-bold" onclick="window.open('https://learn.saylor.org/', '_blank')"
+                                        style="cursor: pointer; line-height: 1.4; color: var(--iisc-accent);">
+                                        Saylor Academy
+                                    </h6>
+                                    <p class="small mb-2" style="color: var(--iisc-muted);">Conducted by Saylor Academy</p>
+                
+                                    <div class="spec-box py-2 px-3 mb-3">
+                                        <small class="d-block" style="line-height: 1.4; color: var(--iisc-slate);">
+                                            <strong>Key Learnings:</strong> Distributed Systems, Distributed Databases, Concurrency Control, and System Design.
+                                        </small>
+                                    </div>
+                
+                                    <!-- VIEW CERTIFICATE BUTTON -->
+                                    <div class="mt-2">
+                                        <button class="btn btn-report-view rounded-pill px-2"
+                                            onclick="openReportModal('Advanced Operating Systems', './Assets/certificates/Advanced_Operating_Systems.pdf')">
+                                            <i class="bi bi-patch-check-fill me-1"></i> View Certificate
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="text-start text-md-end mt-1 mt-md-0 pt-2 pt-md-0 w-md-auto">
+                                    <span class="status-label" style="white-space: nowrap;">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Udemy Item 04: Coding Mathematics using Python -->
+                <div class="accordion-item shadow-sm mb-4">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button shadow-none py-3 d-flex align-items-center gap-2"
+                            style="cursor: default; background-color: transparent !important; color: var(--iisc-navy) !important;">
+                            <span class="item-title fw-bold">Master Math by Coding in Python</span>
+                            <span class="mod-tag-pill">37.5 Hours</span>
+                        </div>
+                    </h2>
+                    <div id="c4" class="accordion-collapse show">
+                        <div class="accordion-body border-top p-3" style="background-color: transparent;">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                                <div class="w-100">
+                                    <h6 class="mb-1 fw-bold" onclick="window.open('https://udemy.com/', '_blank')"
+                                        style="cursor: pointer; line-height: 1.4; color: var(--iisc-accent);">
+                                        Udemy
+                                    </h6>
+                                    <p class="small mb-2" style="color: var(--iisc-muted);">Conducted by Udemy | Codestars</p>
+                
+                                    <div class="spec-box py-2 px-3 mb-3">
+                                        <small class="d-block" style="line-height: 1.4; color: var(--iisc-slate);">
+                                            <strong>Key Learnings:</strong> Mathematical concepts and their applications in programming, including <b>Linear Algebra</b>, <b>Calculus</b>, <b>Probability</b>, and <b>Statistics</b>, all implemented using Python.
+                                        </small>
+                                    </div>
+                
+                                    <!-- VIEW CERTIFICATE BUTTON -->
+                                    <div class="d-flex flex-wrap gap-2 mt-3">
+                                        <button class="btn btn-report-view rounded-pill px-2"
+                                            onclick="openReportModal('Master Math by Coding in Python', './Assets/certificates/Master_Math_by_Coding_in_Python.pdf')">
+                                            <i class="bi bi-patch-check-fill me-1"></i> View Certificate
+                                        </button>
+
+                                        <!-- View Materials (Secondary/Outline) -->
+                                        <button class="btn btn-report-view-outline rounded-pill px-3"
+                                            onclick="window.open('https://github.com/bsshreesha/Math_with_Python_UDEMY', '_blank')">
+                                            <i class="bi bi-github me-1"></i> View Materials
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="text-start text-md-end mt-1 mt-md-0 pt-2 pt-md-0 w-md-auto">
+                                    <span class="status-label" style="white-space: nowrap;">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Udemy Item 05: Coding Mathematics using Python -->
+                <div class="accordion-item shadow-sm mb-4">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button shadow-none py-3 d-flex align-items-center gap-2"
+                            style="cursor: default; background-color: transparent !important; color: var(--iisc-navy) !important;">
+                            <span class="item-title fw-bold">TensorFlow 2: Deep Learning and Artificial Intelligence</span>
+                            <span class="mod-tag-pill">26 Hours</span>
+                        </div>
+                    </h2>
+                    <div id="c4" class="accordion-collapse show">
+                        <div class="accordion-body border-top p-3" style="background-color: transparent;">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                                <div class="w-100">
+                                    <h6 class="mb-1 fw-bold" onclick="window.open('https://udemy.com/', '_blank')"
+                                        style="cursor: pointer; line-height: 1.4; color: var(--iisc-accent);">
+                                        Udemy
+                                    </h6>
+                                    <p class="small mb-2" style="color: var(--iisc-muted);">Conducted by Udemy | Lazy Programmer Inc.</p>
+                
+                                    <div class="spec-box py-2 px-3 mb-3">
+                                        <small class="d-block" style="line-height: 1.4; color: var(--iisc-slate);">
+                                            <strong>Key Learnings:</strong> Implementation of Deep Learning models using TensorFlow 2, including CNNs, RNNs, and GANs, along with practical applications in AI.
+                                        </small>
+                                    </div>
+                
+                                    <!-- VIEW CERTIFICATE BUTTON -->
+                                    <div class="d-flex flex-wrap gap-2 mt-3">
+                                        <button class="btn btn-report-view rounded-pill px-2"
+                                            onclick="openReportModal('TensorFlow 2: Deep Learning and Artificial Intelligence', './Assets/certificates/TensorFlow2_Deep_Learning_and_AI.pdf')">
+                                            <i class="bi bi-patch-check-fill me-1"></i> View Certificate
+                                        </button>
+
+                                        <button class="btn btn-report-view-outline rounded-pill px-3"
+                                            onclick="window.open('https://github.com/bsshreesha/Udemy-TensorFlow2', '_blank')">
+                                            <i class="bi bi-github me-1"></i> View Materials
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="text-start text-md-end mt-1 mt-md-0 pt-2 pt-md-0 w-md-auto">
+                                    <span class="status-label" style="white-space: nowrap;">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+
+    <!-- FILE VIEWER COLUMN (Takes the remaining col-6) -->
+    <div class="col-6">
+        <div class="sticky-top" style="top: 100px; z-index: 10;">
+            <span class="section-title">Institutional Record Viewer</span>
+    
+            <div id="viewerPlaceholder"
+                class="viewer-wrapper d-flex flex-column align-items-center justify-content-center text-center p-5 shadow-sm">
+                <i class="bi bi-file-earmark-pdf fs-1 mb-3 text-muted"></i>
+                <h6 class="fw-bold text-uppercase small" style="letter-spacing: 0.1em; color: var(--iisc-navy);">Select a
+                    Credential</h6>
+                <p class="small text-muted">Click "View Certificate" to load the official academic record in this workspace.
+                </p>
+            </div>
+    
+            <div id="activeViewer" class="viewer-wrapper shadow-sm d-none" style="background-color: #1a1a1a;">
+                <!-- Viewer Header -->
+                <div
+                    class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom border-secondary bg-black">
+                    <span id="viewerTitle" class="text-white small fw-bold text-uppercase"
+                        style="letter-spacing: 0.05em;">Credential.pdf</span>
+                    <button class="btn btn-sm btn-outline-light rounded-0 py-0 px-2" onclick="closeViewer()"
+                        style="font-size: 10px;">RESET</button>
+                </div>
+                <!-- The actual Frame -->
+                <div class="ratio ratio-4x3" style="height: 600px;">
+                    <iframe id="mainFileFrame" src="" frameborder="0"></iframe>
+                </div>
+                <!-- Footer -->
+                <div class="bg-black py-2 px-3 d-flex justify-content-between">
+                    <span class="text-white-50" style="font-size: 10px;">VERIFIED SECURE RECORD</span>
+                    <span class="text-white-50" style="font-size: 10px;">VTU ACADEMIC PORTAL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
