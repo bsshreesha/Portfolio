@@ -213,66 +213,68 @@ async function handleSubmit(event) {
 }
 form.addEventListener("submit", handleSubmit);
 
-function openReportModal(title, filePath) {
-    const reportModal = new bootstrap.Modal(document.getElementById('reportViewerModal'));
-    const frame = document.getElementById('reportFrame');
-    const titleLabel = document.getElementById('modalReportTitle');
-
-    // Update Title and File Path
-    titleLabel.textContent = title;
-    
-    // Check if on mobile (iOS/Android sometimes block iframes for PDFs)
-    // For local dev, ensure the filePath points to a valid PDF or Image
-    frame.src = filePath;
-
-    reportModal.show();
-}
-
-// Clean up iframe when modal closes to save memory
-document.getElementById('reportViewerModal').addEventListener('hidden.bs.modal', function () {
-    document.getElementById('reportFrame').src = "";
-});
-
 /**
- * openReportModal - Standardized for all devices
+ * Unified Viewer System
+ * Detects layout context and triggers either Side-Panel or Fullscreen Modal
  */
 function openReportModal(title, filePath) {
-    // If screen width is less than 992px (Bootstrap 'lg' breakpoint)
+    // 1. Detect Environment
+    const sideViewer = document.getElementById('activeViewer');
+    const placeholder = document.getElementById('viewerPlaceholder');
     const isMobile = window.innerWidth < 992;
 
-    if (isMobile) {
-        // MOBILE LOGIC: Trigger the Fullscreen Modal
-        const reportModal = new bootstrap.Modal(document.getElementById('reportViewerModal'));
-        document.getElementById('modalReportTitle').innerHTML = `<i class="bi bi-shield-check me-2"></i> ${title}`;
-        document.getElementById('reportFrame').src = filePath;
-        reportModal.show();
-    } else {
-        // LAPTOP LOGIC: Load into the side-by-side viewer
-        document.getElementById('viewerPlaceholder').classList.add('d-none');
-        const activeViewer = document.getElementById('activeViewer');
-        activeViewer.classList.remove('d-none');
+    // 2. Logic: If the sideViewer exists (Certifications Page) AND we are on a laptop
+    if (sideViewer && !isMobile) {
+        // SIDE-PANEL WORKSTATION LOGIC
+        if (placeholder) placeholder.classList.add('d-none');
+        sideViewer.classList.remove('d-none');
         
         document.getElementById('viewerTitle').textContent = title;
         document.getElementById('mainFileFrame').src = filePath;
 
-        // Optional: Scroll to top of viewer so it's visible if user is scrolled down
+        // Smooth scroll to the top of the viewer for better UX
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } else {
+        // IMMERSIVE FULLSCREEN MODAL LOGIC
+        const reportModal = new bootstrap.Modal(document.getElementById('reportViewerModal'));
+        const modalTitle = document.getElementById('modalReportTitle');
+        const modalFrame = document.getElementById('reportFrame');
+
+        // Set Title with Shield Icon
+        modalTitle.innerHTML = `<i class="bi bi-shield-check me-2"></i>${title.toUpperCase()}`;
+        
+        // Load file into modal
+        modalFrame.src = filePath;
+
+        reportModal.show();
     }
 }
 
 /**
- * closeViewer - Resets the Laptop side panel
+ * closeViewer - Specifically for the Laptop Side-Panel Workspace
  */
 function closeViewer() {
-    document.getElementById('viewerPlaceholder').classList.remove('d-none');
-    document.getElementById('activeViewer').classList.add('d-none');
-    document.getElementById('mainFileFrame').src = "";
+    const sideViewer = document.getElementById('activeViewer');
+    const placeholder = document.getElementById('viewerPlaceholder');
+    const sideFrame = document.getElementById('mainFileFrame');
+
+    if (sideViewer && placeholder) {
+        sideViewer.classList.add('d-none');
+        placeholder.classList.remove('d-none');
+        if (sideFrame) sideFrame.src = "";
+    }
 }
 
 /**
- * Event Listener for Modal Close
- * Clears mobile iframe src to stop background processing
+ * Cleanup - Ensures the modal iframe stops loading content when closed
  */
-document.getElementById('reportViewerModal').addEventListener('hidden.bs.modal', function () {
-    document.getElementById('reportFrame').src = "";
+document.addEventListener('DOMContentLoaded', function() {
+    const modalElement = document.getElementById('reportViewerModal');
+    if (modalElement) {
+        modalElement.addEventListener('hidden.bs.modal', function () {
+            const modalFrame = document.getElementById('reportFrame');
+            if (modalFrame) modalFrame.src = "";
+        });
+    }
 });
