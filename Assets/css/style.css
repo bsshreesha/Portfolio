@@ -1514,8 +1514,8 @@ footer {
 .viewer-wrapper {
     background-color: var(--iisc-bg-light);
     border: 1px solid var(--iisc-border);
-    border-top: 4px solid var(--iisc-navy);
-    min-height: 500px;
+    border-top: 2px solid var(--iisc-navy);
+    min-height: 600px;
     border-radius: 2px;
 }
 
