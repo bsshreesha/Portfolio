@@ -217,8 +217,8 @@ form.addEventListener("submit", handleSubmit);
  * Unified Viewer System
  * Detects layout context and triggers either Side-Panel or Fullscreen Modal
  */
-* openReportModal - Consolidated & Scroll Locked
- */
+// * openReportModal - Consolidated & Scroll Locked
+//  */
 function openReportModal(title, filePath) {
     const modalElement = document.getElementById('reportViewerModal');
     if (!modalElement) return;
