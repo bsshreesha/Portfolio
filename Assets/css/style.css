@@ -1532,40 +1532,51 @@ footer {
     background-color: #525659;
 }
 
-/* 1. PRESERVE STATE: Prevent the layout from shifting when scrollbar is hidden */
-html {
-    scrollbar-gutter: stable;
+/* Close button for immersive view */
+.btn-modal-close {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 6px 16px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
 }
 
-/* 2. STRICT LOCK: Stop background scrolling completely */
+/* 1. Force the background to lock completely */
 body.modal-open {
+    height: 100vh;
     overflow: hidden !important;
-    height: 100% !important;
+    position: fixed;
+    /* Extra lock for iOS Safari */
+    width: 100%;
 }
 
-/* 3. MODAL SCROLL: Allow scroll ONLY inside the modal body */
+/* 2. Ensure the scroll happens ONLY inside the modal body */
 #reportViewerModal .modal-body {
-    /* Laptop Height */
-    height: 80vh;
     overflow-y: auto !important;
+    /* Allow vertical scroll for the file */
     -webkit-overflow-scrolling: touch;
-    background-color: #1a1a1a;
+    /* Smooth scroll for mobile */
 }
 
-/* 4. MOBILE IMMERSIVE HEIGHT: Fill screen but allow inner scroll */
-@media (max-width: 991px) {
-    #reportViewerModal .modal-body {
-        height: calc(100vh - 110px);
-        /* Space for header/footer */
-    }
-}
-
-/* 5. Monochromatic Scrollbar for the Viewer */
+/* 3. Style the scrollbar for the modal to keep the B&W look */
 #reportViewerModal .modal-body::-webkit-scrollbar {
     width: 6px;
 }
 
 #reportViewerModal .modal-body::-webkit-scrollbar-thumb {
-    background-color: #ffffff;
+    background-color: var(--iisc-navy);
     border-radius: 10px;
+}
+
+/* 4. Ensure the iframe handles its own height internally */
+#reportFrame {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
