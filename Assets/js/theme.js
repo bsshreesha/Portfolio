@@ -217,64 +217,56 @@ form.addEventListener("submit", handleSubmit);
  * Unified Viewer System
  * Detects layout context and triggers either Side-Panel or Fullscreen Modal
  */
+/**
+ * openReportModal - Consolidated & Scroll Locked
+ */
 function openReportModal(title, filePath) {
-    // 1. Detect Environment
-    const sideViewer = document.getElementById('activeViewer');
-    const placeholder = document.getElementById('viewerPlaceholder');
-    const isMobile = window.innerWidth < 992;
-
-    // 2. Logic: If the sideViewer exists (Certifications Page) AND we are on a laptop
-    if (sideViewer && !isMobile) {
-        // SIDE-PANEL WORKSTATION LOGIC
-        if (placeholder) placeholder.classList.add('d-none');
-        sideViewer.classList.remove('d-none');
-        
-        document.getElementById('viewerTitle').textContent = title;
-        document.getElementById('mainFileFrame').src = filePath;
-
-        // Smooth scroll to the top of the viewer for better UX
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    } else {
-        // IMMERSIVE FULLSCREEN MODAL LOGIC
-        const reportModal = new bootstrap.Modal(document.getElementById('reportViewerModal'));
-        const modalTitle = document.getElementById('modalReportTitle');
-        const modalFrame = document.getElementById('reportFrame');
-
-        // Set Title with Shield Icon
-        modalTitle.innerHTML = `<i class="bi bi-shield-check me-2"></i>${title.toUpperCase()}`;
-        
-        // Load file into modal
-        modalFrame.src = filePath;
-
-        reportModal.show();
-    }
-}
-
-/**
- * closeViewer - Specifically for the Laptop Side-Panel Workspace
- */
-function closeViewer() {
-    const sideViewer = document.getElementById('activeViewer');
-    const placeholder = document.getElementById('viewerPlaceholder');
-    const sideFrame = document.getElementById('mainFileFrame');
-
-    if (sideViewer && placeholder) {
-        sideViewer.classList.add('d-none');
-        placeholder.classList.remove('d-none');
-        if (sideFrame) sideFrame.src = "";
-    }
-}
-
-/**
- * Cleanup - Ensures the modal iframe stops loading content when closed
- */
-document.addEventListener('DOMContentLoaded', function() {
     const modalElement = document.getElementById('reportViewerModal');
+    if (!modalElement) return;
+
+    const modalTitle = document.getElementById('modalReportTitle');
+    const modalFrame = document.getElementById('reportFrame');
+
+    // 1. Set Dynamic Content
+    modalTitle.innerHTML = `<i class="bi bi-shield-check me-2 text-primary"></i> ${title.toUpperCase()}`;
+    modalFrame.src = filePath;
+
+    // 2. Initialize and Show
+    const reportModal = new bootstrap.Modal(modalElement);
+    reportModal.show();
+}
+
+/**
+ * Global Scroll Management & Cleanup
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    const modalElement = document.getElementById('reportViewerModal');
+    
     if (modalElement) {
+        // TRIGGERED WHEN MODAL STARTS TO OPEN
+        modalElement.addEventListener('show.bs.modal', function () {
+            // Record current scroll position to prevent "jump" on mobile
+            const scrollY = window.scrollY;
+            document.body.style.top = `-${scrollY}px`;
+            document.body.classList.add('modal-open');
+        });
+
+        // TRIGGERED WHEN MODAL IS COMPLETELY CLOSED
         modalElement.addEventListener('hidden.bs.modal', function () {
             const modalFrame = document.getElementById('reportFrame');
+            
+            // 1. Clear Iframe to stop background loading
             if (modalFrame) modalFrame.src = "";
+            
+            // 2. Unlock Body Scrolling
+            const scrollY = document.body.style.top;
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = "";
+            document.body.style.position = "";
+            document.body.style.top = "";
+            
+            // 3. Restore scroll position
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
         });
     }
 });
