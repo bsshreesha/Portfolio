@@ -218,7 +218,8 @@ form.addEventListener("submit", handleSubmit);
  * Detects layout context and triggers either Side-Panel or Fullscreen Modal
  */
 /**
- * openReportModal - Consolidated & Scroll Locked
+ * openReportModal - Standardized & Scroll-Aware
+ * Opens the modal without affecting the background scroll position
  */
 function openReportModal(title, filePath) {
     const modalElement = document.getElementById('reportViewerModal');
@@ -227,46 +228,31 @@ function openReportModal(title, filePath) {
     const modalTitle = document.getElementById('modalReportTitle');
     const modalFrame = document.getElementById('reportFrame');
 
-    // 1. Set Dynamic Content
+    // 1. Set Content
     modalTitle.innerHTML = `<i class="bi bi-shield-check me-2 text-primary"></i> ${title.toUpperCase()}`;
     modalFrame.src = filePath;
 
-    // 2. Initialize and Show
+    // 2. Open Modal
+    // Bootstrap 5 will automatically add .modal-open to <body>
+    // and preserve the current scroll position natively.
     const reportModal = new bootstrap.Modal(modalElement);
     reportModal.show();
 }
 
 /**
- * Global Scroll Management & Cleanup
+ * Cleanup logic
  */
 document.addEventListener('DOMContentLoaded', function () {
     const modalElement = document.getElementById('reportViewerModal');
     
     if (modalElement) {
-        // TRIGGERED WHEN MODAL STARTS TO OPEN
-        modalElement.addEventListener('show.bs.modal', function () {
-            // Record current scroll position to prevent "jump" on mobile
-            const scrollY = window.scrollY;
-            document.body.style.top = `-${scrollY}px`;
-            document.body.classList.add('modal-open');
-        });
-
-        // TRIGGERED WHEN MODAL IS COMPLETELY CLOSED
+        // Clear iframe on close to save memory and stop background sounds/processes
         modalElement.addEventListener('hidden.bs.modal', function () {
             const modalFrame = document.getElementById('reportFrame');
-            
-            // 1. Clear Iframe to stop background loading
             if (modalFrame) modalFrame.src = "";
             
-            // 2. Unlock Body Scrolling
-            const scrollY = document.body.style.top;
-            document.body.classList.remove('modal-open');
-            document.body.style.overflow = "";
-            document.body.style.position = "";
-            document.body.style.top = "";
-            
-            // 3. Restore scroll position
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            // Focus back on the body to ensure keyboard navigation works
+            document.body.focus();
         });
     }
 });

@@ -1532,51 +1532,44 @@ footer {
     background-color: #525659;
 }
 
-/* Close button for immersive view */
-.btn-modal-close {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #ffffff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding: 6px 16px;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
+/* 1. Prevent background from jumping when scrollbar disappears */
+html {
+    overflow-y: scroll;
+    /* Keep a permanent gutter for the scrollbar */
 }
 
-/* 1. Force the background to lock completely */
 body.modal-open {
-    height: 100vh;
+    /* Bootstrap handles overflow:hidden, we just ensure no position overrides */
+    padding-right: 0 !important;
     overflow: hidden !important;
-    position: fixed;
-    /* Extra lock for iOS Safari */
-    width: 100%;
 }
 
-/* 2. Ensure the scroll happens ONLY inside the modal body */
+/* 2. Style the Modal Scroll (Inside only) */
 #reportViewerModal .modal-body {
+    height: 80vh;
+    /* Laptop view */
     overflow-y: auto !important;
-    /* Allow vertical scroll for the file */
-    -webkit-overflow-scrolling: touch;
-    /* Smooth scroll for mobile */
+    background-color: #1a1a1a;
 }
 
-/* 3. Style the scrollbar for the modal to keep the B&W look */
+/* 3. Responsive Modal Body Height */
+@media (max-width: 991px) {
+    #reportViewerModal .modal-body {
+        height: calc(100vh - 120px);
+        /* Fill mobile screen but keep header/footer visible */
+    }
+}
+
+/* 4. Custom scrollbar for the Modal Viewer (Monochromatic) */
 #reportViewerModal .modal-body::-webkit-scrollbar {
     width: 6px;
 }
 
-#reportViewerModal .modal-body::-webkit-scrollbar-thumb {
-    background-color: var(--iisc-navy);
-    border-radius: 10px;
+#reportViewerModal .modal-body::-webkit-scrollbar-track {
+    background: #000;
 }
 
-/* 4. Ensure the iframe handles its own height internally */
-#reportFrame {
-    display: block;
-    width: 100%;
-    height: 100%;
+#reportViewerModal .modal-body::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
 }
