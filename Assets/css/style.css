@@ -1532,44 +1532,40 @@ footer {
     background-color: #525659;
 }
 
-/* 1. Prevent background from jumping when scrollbar disappears */
+/* 1. PRESERVE STATE: Prevent the layout from shifting when scrollbar is hidden */
 html {
-    overflow-y: scroll;
-    /* Keep a permanent gutter for the scrollbar */
+    scrollbar-gutter: stable;
 }
 
+/* 2. STRICT LOCK: Stop background scrolling completely */
 body.modal-open {
-    /* Bootstrap handles overflow:hidden, we just ensure no position overrides */
-    padding-right: 0 !important;
     overflow: hidden !important;
+    height: 100% !important;
 }
 
-/* 2. Style the Modal Scroll (Inside only) */
+/* 3. MODAL SCROLL: Allow scroll ONLY inside the modal body */
 #reportViewerModal .modal-body {
+    /* Laptop Height */
     height: 80vh;
-    /* Laptop view */
     overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
     background-color: #1a1a1a;
 }
 
-/* 3. Responsive Modal Body Height */
+/* 4. MOBILE IMMERSIVE HEIGHT: Fill screen but allow inner scroll */
 @media (max-width: 991px) {
     #reportViewerModal .modal-body {
-        height: calc(100vh - 120px);
-        /* Fill mobile screen but keep header/footer visible */
+        height: calc(100vh - 110px);
+        /* Space for header/footer */
     }
 }
 
-/* 4. Custom scrollbar for the Modal Viewer (Monochromatic) */
+/* 5. Monochromatic Scrollbar for the Viewer */
 #reportViewerModal .modal-body::-webkit-scrollbar {
     width: 6px;
 }
 
-#reportViewerModal .modal-body::-webkit-scrollbar-track {
-    background: #000;
-}
-
 #reportViewerModal .modal-body::-webkit-scrollbar-thumb {
-    background: #333;
+    background-color: #ffffff;
     border-radius: 10px;
 }

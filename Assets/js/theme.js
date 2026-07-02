@@ -218,8 +218,7 @@ form.addEventListener("submit", handleSubmit);
  * Detects layout context and triggers either Side-Panel or Fullscreen Modal
  */
 /**
- * openReportModal - Standardized & Scroll-Aware
- * Opens the modal without affecting the background scroll position
+ * openReportModal - Scroll-Locked & Position-Preserved
  */
 function openReportModal(title, filePath) {
     const modalElement = document.getElementById('reportViewerModal');
@@ -228,31 +227,29 @@ function openReportModal(title, filePath) {
     const modalTitle = document.getElementById('modalReportTitle');
     const modalFrame = document.getElementById('reportFrame');
 
-    // 1. Set Content
+    // 1. Set Content (B&W Aesthetic)
     modalTitle.innerHTML = `<i class="bi bi-shield-check me-2 text-primary"></i> ${title.toUpperCase()}`;
     modalFrame.src = filePath;
 
-    // 2. Open Modal
-    // Bootstrap 5 will automatically add .modal-open to <body>
-    // and preserve the current scroll position natively.
+    // 2. Trigger Modal
+    // Note: Bootstrap natively prevents background scrolling 
+    // without resetting the scroll position.
     const reportModal = new bootstrap.Modal(modalElement);
     reportModal.show();
 }
 
 /**
- * Cleanup logic
+ * Cleanup - Stop background processing
  */
 document.addEventListener('DOMContentLoaded', function () {
     const modalElement = document.getElementById('reportViewerModal');
-    
     if (modalElement) {
-        // Clear iframe on close to save memory and stop background sounds/processes
         modalElement.addEventListener('hidden.bs.modal', function () {
             const modalFrame = document.getElementById('reportFrame');
             if (modalFrame) modalFrame.src = "";
             
-            // Focus back on the body to ensure keyboard navigation works
-            document.body.focus();
+            // Background will automatically be scrollable again 
+            // at the exact same pixel where the user left off.
         });
     }
 });
