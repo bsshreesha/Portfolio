@@ -1,1 +1,43 @@
-{"name":"","short_name":"","icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#ffffff","background_color":"#ffffff","display":"standalone"}
+{
+  "id": "/",
+  "name": "B S Shreesha - Personal Portfolio",
+  "short_name": "B S Shreesha",
+  "description": "Personal portfolio, projects, research, skills and professional profile.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#172554",
+  "categories": [
+    "education",
+    "productivity",
+    "portfolio"
+  ],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/Assets/img/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/img/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
