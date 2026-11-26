@@ -54,6 +54,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }, currentContent ? 150 : 0);
     }
 
+    // ===== CERTIFICATE / REPORT PDF VIEWER =====
+    // The buttons in certifications.html call this function directly.
+    // Bootstrap manages the modal and restores the page's original scroll position.
+    window.openReportModal = function (title, fileUrl) {
+        const modalElement = document.getElementById('reportViewerModal');
+        const frame = document.getElementById('reportFrame');
+        const titleElement = document.getElementById('modalReportTitle');
+
+        if (!modalElement || !frame || !window.bootstrap?.Modal) {
+            console.error('Certificate viewer or Bootstrap Modal is unavailable.');
+            return;
+        }
+
+        if (!fileUrl) {
+            console.error('No certificate/report file URL was provided.');
+            return;
+        }
+
+        if (titleElement) {
+            titleElement.textContent = title || 'Verified Credential';
+        }
+
+        // Set the PDF before showing the modal; no page navigation or scroll-to-top.
+        frame.src = fileUrl;
+        const modalInstance = window.bootstrap.Modal.getOrCreateInstance(modalElement, {
+            backdrop: true,
+            keyboard: true,
+            focus: true
+        });
+        modalInstance.show();
+    };
+
+    // Clear the PDF after closing so it does not continue loading in the background.
+    document.addEventListener('hidden.bs.modal', (event) => {
+        if (event.target && event.target.id === 'reportViewerModal') {
+            const frame = event.target.querySelector('#reportFrame');
+            if (frame) frame.src = '';
+        }
+    });
+
     // ===== CERTIFICATION CARDS MODAL INTERACTION HANDLING (MOBILE CLOSES) =====
     function attachModalTriggers() {
         const modal = document.getElementById('certModal');

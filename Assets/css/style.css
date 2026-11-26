@@ -1547,13 +1547,10 @@ footer {
     align-items: center;
 }
 
-/* 1. Force the background to lock completely */
+/* Bootstrap locks background scrolling and restores the previous scroll position.
+   Do not position:fixed the body here: that can jump the page back to the top. */
 body.modal-open {
-    height: 100vh;
     overflow: hidden !important;
-    position: fixed;
-    /* Extra lock for iOS Safari */
-    width: 100%;
 }
 
 /* 2. Ensure the scroll happens ONLY inside the modal body */
